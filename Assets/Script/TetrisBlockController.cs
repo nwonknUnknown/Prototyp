@@ -10,6 +10,10 @@ public class TetrisBlockController : MonoBehaviour
     [SerializeField] bool allowRotation = true; //If rotation should be true on this object.
     Bounds tetrisBounds; //Bounds for the tetrisblock.
     Bounds groundBox; //Bounds for the ground.
+    [Header ("The Z axes is the way the tetris boxes are " +
+    "going to fall in. This can be easly be changed through " +
+    "script by having a reference to this script.")]
+    [SerializeField] Vector3 goingDownSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +37,11 @@ public class TetrisBlockController : MonoBehaviour
             return; 
         }
         tetrisBounds = boxCollider.bounds; //We are storing the bounds of the boxcollider for this tetris block.
+        if (goingDownSpeed.x < 0)
+        {
+            goingDownSpeed.x = -1;
+        }
+
     }
     // Update is called once per frame
     void Update()
@@ -61,7 +70,7 @@ public class TetrisBlockController : MonoBehaviour
 
         if((fallTime <= 0) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            position += new Vector3 (0,0,-1); //Move the tetris block down when the user presses the down arrow. 
+            position += goingDownSpeed; //Move the tetris block down when the user presses the down arrow. 
             fallTime = fallTimeReset; //Resets the timer so that the tetris block doesen't constantly go down faster and faster.
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
