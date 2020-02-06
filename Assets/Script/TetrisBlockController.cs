@@ -41,7 +41,7 @@ public class TetrisBlockController : MonoBehaviour
         fallTime -= Time.deltaTime; //Makes falltime be minus the deltatime.
 
         float playerInputX;
-        playerInputX = Input.GetAxisRaw("Horizontal");
+        playerInputX = Input.GetAxis("Horizontal");
         float playerInputZ;
         playerInputZ = Input.GetAxisRaw("Vertical");
         float playerInputRotate;
@@ -59,7 +59,7 @@ public class TetrisBlockController : MonoBehaviour
         }
         position.x += (playerInputX); //Move the player forward. 
 
-        if(fallTime <= 0)
+        if((fallTime <= 0) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             position += new Vector3 (0,0,-1); //Move the tetris block down when the user presses the down arrow. 
             fallTime = fallTimeReset; //Resets the timer so that the tetris block doesen't constantly go down faster and faster.
