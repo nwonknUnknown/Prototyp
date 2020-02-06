@@ -10,9 +10,7 @@ public class TetrisBlockController : MonoBehaviour
     [SerializeField] bool allowRotation = true; //If rotation should be true on this object.
     Bounds tetrisBounds; //Bounds for the tetrisblock.
     Bounds groundBox; //Bounds for the ground.
-    [Header ("The Z axes is the way the tetris boxes are " +
-    "going to fall in. This can be easly be changed through " +
-    "script by having a reference to this script.")]
+    [Header ("The Z axes are the ones you whant to edit in order to edit the speed of the objekt.")]
     [SerializeField] Vector3 goingDownSpeed;
     // Start is called before the first frame update
     void Start()
