@@ -65,6 +65,12 @@ MonoBehaviour:
   goingDownSpeed: {x: 0, y: 0, z: -1}
   stillObject: {fileID: 6162470083761096452, guid: 230a06f861b065841bb14be4a77395ca,
     type: 3}
+  partsOfThisTetrisBlock:
+  - {fileID: 3541488098721109934}
+  - {fileID: 0}
+  count: 0
+  children: {fileID: 6162470083761096452, guid: 230a06f861b065841bb14be4a77395ca,
+    type: 3}
 --- !u!1 &3541488098829585866
 GameObject:
   m_ObjectHideFlags: 0

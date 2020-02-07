@@ -13,10 +13,12 @@ public class TetrisBlockController : MonoBehaviour
     [SerializeField] Vector3 goingDownSpeed;
     bool tetrisCubeMoving = true; 
     [SerializeField] GameObject stillObject; //New object that will spawn.
+    [SerializeField] GameObject[] partsOfThisTetrisBlock; //All the parts of this tetrisblock.
+    [SerializeField] int count; //The amount of tetrisblocks in this row.  
+    [SerializeField] GameObject children;
     // Start is called before the first frame update
     void Start()
     {
-
         BoxCollider boxCollider; 
         BoxCollider groundCollider;
         GameObject nameOfCollision;
@@ -67,7 +69,7 @@ public class TetrisBlockController : MonoBehaviour
         {
             position.x += (playerInputX); //Move the player forward. 
         }
-        if (fallTime <= 0 && tetrisCubeMoving == true)
+        if (fallTime <= 0 && tetrisCubeMoving)
         {
             fallTime = fallTimeReset;
             position += goingDownSpeed; //Move the tetris block down when the user presses the down arrow. 
@@ -75,6 +77,7 @@ public class TetrisBlockController : MonoBehaviour
         if ((position.z - tetrisBounds.extents.z + playerInputZ < groundBox.min.z) && tetrisCubeMoving)
         {           
             playerInputZ = groundBox.min.z - (position.z - tetrisBounds.extents.z); //Make so that it moves as close as possible.
+            ++count;
             tetrisCubeMoving = false;
             GroundEnter();
         }
@@ -100,10 +103,12 @@ public class TetrisBlockController : MonoBehaviour
         transform.position = position; //Reseting the transform. 
     }
     void GroundEnter()
-    {
-        Instantiate(stillObject,transform.position, transform.rotation); //Skapar kuben.
-        Destroy(gameObject); //Förstör detta objekt
-    }
-    
+    { 
+        if(count == 5)
+        {
+            //partsOfThisTetrisBlock;
+        }
+        //Instantiate(stillObject,transform.position, transform.rotation); //Skapar kuben.
+        //Destroy(gameObject); //Förstör detta objekt.
+    }    
 }
-
