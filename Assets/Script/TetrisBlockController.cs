@@ -12,14 +12,14 @@ public class TetrisBlockController : MonoBehaviour
     [Header ("The Z axes are the ones you whant to edit in order to edit the speed of the objekt.")]
     [SerializeField] Vector3 goingDownSpeed;
     bool tetrisCubeMoving = true; 
-    GameObject thisObject; //Setting this tetris inactive.
     GameObject stillObject; //New object that will spawn.
     // Start is called before the first frame update
     void Start()
     {
+
         BoxCollider boxCollider; 
         BoxCollider groundCollider;
-        GameObject nameOfCollision; 
+        GameObject nameOfCollision;
         nameOfCollision = GameObject.Find("Ground"); //To get acces to the gameobject we want to check collision with.
         if (nameOfCollision == null) //To check if it's null.
         {
