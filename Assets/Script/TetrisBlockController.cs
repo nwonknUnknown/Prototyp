@@ -55,7 +55,7 @@ public class TetrisBlockController : MonoBehaviour
         playerInputRotate = Input.GetAxisRaw("Rotate");
         Vector3 position; //A vector we can use to calculate if the tetris block would enter another objekts bounds.  
         position = transform.position; //Inherenting the objects world position to the position varibale. 
-        Debug.Log($"{position.x + tetrisBounds.extents.x } {groundBox.max.x} ");     
+       // Debug.Log($"{position.x + tetrisBounds.extents.x } {groundBox.max.x} ");     
         if (position.x + tetrisBounds.extents.x + playerInputX > groundBox.max.x) //If the objekt would move pass the max bounds of the ground.
         {
             playerInputX = groundBox.max.x - (position.x + tetrisBounds.extents.x); //Make so that it moves as close as possible. 
