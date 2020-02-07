@@ -7,7 +7,8 @@ public class TetrisBlockController : MonoBehaviour
     public float fallTime = 1; //Handles the time when the block is falling down.
     public float fallTimeReset = 1; //Used to reset the tetris blocks timer between falling down. It's public, which means it can be changed overtime with the GameManager script.
     [SerializeField] bool allowRotation = true; //If rotation should be true on this object.
-    Bounds tetrisBounds; //Bounds for the tetrisblock.
+    Bounds tetrisBounds; //Bounds for this tetrisblock.
+    Bounds tetrisBoxes; //Bounds for all tetrisblocks on the scene.
     Bounds groundBox; //Bounds for the ground.
     [Header ("The Z axes are the ones you whant to edit in order to edit the speed of the objekt.")]
     [SerializeField] Vector3 goingDownSpeed;
@@ -19,26 +20,30 @@ public class TetrisBlockController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BoxCollider boxCollider; 
+        BoxCollider tetrisCollidersInScene;
+        BoxCollider thisTetrisCollider; 
         BoxCollider groundCollider;
         GameObject nameOfCollision;
+        //tetrisObjectsInSceneName = GameObject.FindWithTag("TetrisBlock"); //Searches for all gameobjects with this tag in the scene.
         nameOfCollision = GameObject.Find("Ground"); //To get acces to the gameobject we want to check collision with.
         if (nameOfCollision == null) //To check if it's null.
         {
             return;
         }
         groundCollider = nameOfCollision.GetComponent<BoxCollider>(); //Getting the boxcollider of the groundcollider.
+        //tetrisCollidersInScene = tetrisObjectsInSceneName.GetComponent<BoxCollider>();
+        //tetrisBoxes = tetrisCollidersInScene.bounds;
         if(groundCollider == null) //To check if it's null.
         {
             return;
         }
         groundBox = groundCollider.bounds; //We are storing the bounds of the boxcollider for the road.
-        boxCollider = GetComponent<BoxCollider>();
-        if (boxCollider == null)
+        thisTetrisCollider = GetComponent<BoxCollider>();
+        if (thisTetrisCollider == null)
         {
             return; 
         }
-        tetrisBounds = boxCollider.bounds; //We are storing the bounds of the boxcollider for this tetris block.
+        tetrisBounds = thisTetrisCollider.bounds; //We are storing the bounds of the boxcollider for this tetris block.
         if (goingDownSpeed.x < 0)
         {
             goingDownSpeed.x = -1;
