@@ -22,7 +22,7 @@ public class ScoreCounter : MonoBehaviour
         if (isEnabled) // Activates the scorecounting.
         {
             currentScore += 1 * Time.deltaTime;
-            score.text = $"Highscore: {Mathf.FloorToInt(currentScore)}";
+            score.text = $" Highscore: {Mathf.FloorToInt(currentScore)}";
         }
     }
 
