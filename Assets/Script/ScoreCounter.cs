@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class ScoreCounter : MonoBehaviour
 {
-    float currentScore = 0;
+    private float currentScore = 0;
     
     [SerializeField] Text score; //The text projects the players highscore.
-    private bool isEnabled = true; // A bool that will activate the scorecounting
+    private bool isEnabled; // A bool that will activate the scorecounting
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +22,13 @@ public class ScoreCounter : MonoBehaviour
         if (isEnabled) // Activates the scorecounting.
         {
             currentScore += 1 * Time.deltaTime;
-            score.text = $"Highscore: " + Mathf.FloorToInt(currentScore);
+            score.text = $" Highscore: {Mathf.FloorToInt(currentScore)}";
         }
+    }
+
+    public void enableScore()
+    {
+        isEnabled = true;
     }
 
 }
