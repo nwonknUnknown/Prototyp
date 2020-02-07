@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class TetrisBlockController : MonoBehaviour
 {
     //Denna koden hanterar Tetris kubernas rörelse i spelet. Man kan återanvända dessa för spelaren, men kommer behöva ändra så att spelarens bil kan åka uppåt och neråt, samt att bilen ska inte åka neråt varje frame. 
@@ -12,6 +11,9 @@ public class TetrisBlockController : MonoBehaviour
     Bounds groundBox; //Bounds for the ground.
     [Header ("The Z axes are the ones you whant to edit in order to edit the speed of the objekt.")]
     [SerializeField] Vector3 goingDownSpeed;
+    bool tetrisCubeMoving = true; 
+    GameObject thisObject; //Setting this tetris inactive.
+    GameObject stillObject; //New object that will spawn.
     // Start is called before the first frame update
     void Start()
     {
@@ -39,14 +41,11 @@ public class TetrisBlockController : MonoBehaviour
         {
             goingDownSpeed.x = -1;
         }
-
     }
     // Update is called once per frame
     void Update()
     {
-
         fallTime -= Time.deltaTime; //Makes falltime be minus the deltatime.
-
         float playerInputX;
         playerInputX = Input.GetAxis("Horizontal");
         float playerInputZ;
@@ -56,26 +55,37 @@ public class TetrisBlockController : MonoBehaviour
         Vector3 position; //A vector we can use to calculate if the tetris block would enter another objekts bounds.  
         position = transform.position; //Inherenting the objects world position to the position varibale. 
         Debug.Log($"{position.x + tetrisBounds.extents.x } {groundBox.max.x} ");     
-        if (position.x + tetrisBounds.extents.x + playerInputX > groundBox.max.x) //If the objekt would move pass the max bounds of the ground.
+        if (position.x + tetrisBounds.extents.x + playerInputX > groundBox.max.x && tetrisCubeMoving) //If the objekt would move pass the max bounds of the ground.
         {
             playerInputX = groundBox.max.x - (position.x + tetrisBounds.extents.x); //Make so that it moves as close as possible. 
         }       
-        if(position.x - tetrisBounds.extents.x + playerInputX < groundBox.min.x) //If the object would move pass the min bounds of the ground.
+        if(position.x - tetrisBounds.extents.x + playerInputX < groundBox.min.x && tetrisCubeMoving) //If the object would move pass the min bounds of the ground.
         {
             playerInputX = groundBox.min.x - (position.x - tetrisBounds.extents.x); //Make so that it moves as close as possible.
         }
-        position.x += (playerInputX); //Move the player forward. 
-
-        if((fallTime <= 0) || Input.GetKeyDown(KeyCode.DownArrow))
+        if (tetrisCubeMoving)
         {
-            position += goingDownSpeed; //Move the tetris block down when the user presses the down arrow. 
-            fallTime = fallTimeReset; //Resets the timer so that the tetris block doesen't constantly go down faster and faster.
+            position.x += (playerInputX); //Move the player forward. 
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (fallTime <= 0 && tetrisCubeMoving == true)
+        {
+            fallTime = fallTimeReset;
+            position += goingDownSpeed; //Move the tetris block down when the user presses the down arrow. 
+        }
+        if ((position.z - tetrisBounds.extents.z + playerInputZ < groundBox.min.z) && tetrisCubeMoving)
+        {           
+            playerInputZ = groundBox.min.z - (position.z - tetrisBounds.extents.z); //Make so that it moves as close as possible.
+            tetrisCubeMoving = false;
+            GroundEnter(tetrisCubeMoving);
+        }
+        if (tetrisCubeMoving)
+        {
+            position.z += (playerInputZ); //Move the player forward.     
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow) && tetrisCubeMoving)
         {
             if (allowRotation)
             {
-
                 if (position.x - tetrisBounds.extents.x + playerInputRotate > groundBox.max.x)
                 {
                     playerInputRotate = groundBox.max.x - (position.x - tetrisBounds.extents.x);
@@ -89,5 +99,12 @@ public class TetrisBlockController : MonoBehaviour
         }
         transform.position = position; //Reseting the transform. 
     }
+    bool GroundEnter(bool movingCube)
+    {
+        Instantiate(stillObject,transform.position, transform.rotation);
+        Destroy(gameObject);
+        return movingCube;
+    }
+    
 }
 
