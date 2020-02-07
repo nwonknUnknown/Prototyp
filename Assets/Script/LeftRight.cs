@@ -6,6 +6,7 @@ public class LeftRight : MonoBehaviour
 {
 
     public float speed;
+    private float animationDuration = 3.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,11 @@ public class LeftRight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Time.time < animationDuration)
+        {
+            return;
+        }
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
