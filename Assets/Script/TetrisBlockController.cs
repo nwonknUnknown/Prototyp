@@ -76,7 +76,7 @@ public class TetrisBlockController : MonoBehaviour
         {           
             playerInputZ = groundBox.min.z - (position.z - tetrisBounds.extents.z); //Make so that it moves as close as possible.
             tetrisCubeMoving = false;
-            GroundEnter(tetrisCubeMoving);
+            GroundEnter();
         }
         if (tetrisCubeMoving)
         {
@@ -99,11 +99,10 @@ public class TetrisBlockController : MonoBehaviour
         }
         transform.position = position; //Reseting the transform. 
     }
-    bool GroundEnter(bool movingCube)
+    void GroundEnter()
     {
-        Instantiate(stillObject,transform.position, transform.rotation);
-        Destroy(gameObject);
-        return movingCube;
+        Instantiate(stillObject,transform.position, transform.rotation); //Skapar kuben.
+        Destroy(gameObject); //Förstör detta objekt
     }
     
 }
