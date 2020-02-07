@@ -32,7 +32,7 @@ public class GameStartCamera : MonoBehaviour
         if (transition > 1.0f)
         {
             transform.position = moveVector;
-            activateScore.enableScore();
+            activateScore.EnableScore();
         }
         else
         {
