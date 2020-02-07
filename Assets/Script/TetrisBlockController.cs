@@ -12,7 +12,7 @@ public class TetrisBlockController : MonoBehaviour
     [Header ("The Z axes are the ones you whant to edit in order to edit the speed of the objekt.")]
     [SerializeField] Vector3 goingDownSpeed;
     bool tetrisCubeMoving = true; 
-    GameObject stillObject; //New object that will spawn.
+    [SerializeField] GameObject stillObject; //New object that will spawn.
     // Start is called before the first frame update
     void Start()
     {
