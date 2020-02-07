@@ -10,6 +10,8 @@ public class TetrisBlockController : MonoBehaviour
     [SerializeField] bool allowRotation = true; //If rotation should be true on this object.
     Bounds tetrisBounds; //Bounds for the tetrisblock.
     Bounds groundBox; //Bounds for the ground.
+    [Header ("The Z axes are the ones you whant to edit in order to edit the speed of the objekt.")]
+    [SerializeField] Vector3 goingDownSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,11 @@ public class TetrisBlockController : MonoBehaviour
             return; 
         }
         tetrisBounds = boxCollider.bounds; //We are storing the bounds of the boxcollider for this tetris block.
+        if (goingDownSpeed.x < 0)
+        {
+            goingDownSpeed.x = -1;
+        }
+
     }
     // Update is called once per frame
     void Update()
@@ -41,7 +48,7 @@ public class TetrisBlockController : MonoBehaviour
         fallTime -= Time.deltaTime; //Makes falltime be minus the deltatime.
 
         float playerInputX;
-        playerInputX = Input.GetAxisRaw("Horizontal");
+        playerInputX = Input.GetAxis("Horizontal");
         float playerInputZ;
         playerInputZ = Input.GetAxisRaw("Vertical");
         float playerInputRotate;
@@ -59,9 +66,9 @@ public class TetrisBlockController : MonoBehaviour
         }
         position.x += (playerInputX); //Move the player forward. 
 
-        if(fallTime <= 0)
+        if((fallTime <= 0) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            position += new Vector3 (0,0,-1); //Move the tetris block down when the user presses the down arrow. 
+            position += goingDownSpeed; //Move the tetris block down when the user presses the down arrow. 
             fallTime = fallTimeReset; //Resets the timer so that the tetris block doesen't constantly go down faster and faster.
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
