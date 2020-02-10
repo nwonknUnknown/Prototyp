@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarMovement : MonoBehaviour
+public class testscript : MonoBehaviour
 {
     public KeyCode moveLeft;
     public KeyCode moveRight;
