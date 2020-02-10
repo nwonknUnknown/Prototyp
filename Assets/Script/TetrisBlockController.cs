@@ -113,6 +113,14 @@ public class TetrisBlockController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             transform.Rotate(0, 90, 0);
+            if (CheckIsValidPosition())
+            {
+
+            }
+            else
+            {
+                transform.Rotate(0, -90, 0);
+            }
         }
 
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - fallTime >= fallSpeed)
@@ -121,7 +129,7 @@ public class TetrisBlockController : MonoBehaviour
 
             if (CheckIsValidPosition())
             {
-
+                
             }
             else
             {
@@ -139,7 +147,7 @@ public class TetrisBlockController : MonoBehaviour
     {
         foreach(Transform tetrisCube in transform)
         {
-            Vector3 pos = FindObjectOfType<Game>().Round(tetrisCube.position); //Check is a tetris is inside the grid.
+            Vector2 pos = FindObjectOfType<Game>().Round(tetrisCube.position); //Check is a tetris is inside the grid.
 
             if (FindObjectOfType<Game>().CheckIsInsideGrid(pos) == false) //If the tetris cube is inside the grid.
             {
