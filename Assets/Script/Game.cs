@@ -40,8 +40,6 @@ public class Game : MonoBehaviour
 
     }
 
-
-
     static public bool CheckIsInsideGrid(Vector3 pos) //Checking if a certain object is within the grid or not and returns the value of the current position of a gameobject in relation to the grid.
     {
         return (pos.x >= 0 && pos.x < gridWidth && pos.z >= 0 && pos.z < gridHeight );
