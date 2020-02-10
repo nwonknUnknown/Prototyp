@@ -15,7 +15,7 @@ public class TetrisBlockController : MonoBehaviour
     [SerializeField] Vector3 goingLeftSpeed;
     [SerializeField] Vector3 goingRightSpeed;
     bool tetrisCubeMoving = true;
-    [SerializeField] int count; //The amount of tetrisblocks in this row.  
+    int count; //The amount of tetrisblocks in this row.  
     Game rowCalculate;
     // Start is called before the first frame update
     void Start()
@@ -129,15 +129,14 @@ public class TetrisBlockController : MonoBehaviour
 
             if (CheckIsValidPosition())
             {
-                
+                Debug.Log("Valid");
             }
             else
             {
-                transform.position -= goingDownSpeed;
+                Debug.Log($"Position {transform.position}");  transform.position -= goingDownSpeed;
             }
 
             fallTime = Time.time;
-
 
         }
 
@@ -146,10 +145,8 @@ public class TetrisBlockController : MonoBehaviour
     bool CheckIsValidPosition()
     {
         foreach(Transform tetrisCube in transform)
-        {
-            Vector2 pos = FindObjectOfType<Game>().Round(tetrisCube.position); //Check is a tetris is inside the grid.
-
-            if (FindObjectOfType<Game>().CheckIsInsideGrid(pos) == false) //If the tetris cube is inside the grid.
+        {         
+            if (Game.CheckIsInsideGrid(tetrisCube.position) == false) //If the tetris cube is inside the grid.
             {
                return false;
             }

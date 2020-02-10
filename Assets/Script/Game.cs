@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-    public static int gridHeight = 30;
-    public static int gridWidth = 10;
+   [SerializeField] public static int gridHeight = 20;
+   [SerializeField] public static int gridWidth = 10;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        SpawnNextTetrisBlock();
     }
 
     // Update is called once per frame
@@ -28,14 +28,33 @@ public class Game : MonoBehaviour
         }
     }
 
-    public bool CheckIsInsideGrid(Vector3 pos) //Checking if a certain object is within the grid or not and returns the value of the current position of a gameobject in relation to the grid.
+
+
+    static public bool CheckIsInsideGrid(Vector3 pos) //Checking if a certain object is within the grid or not and returns the value of the current position of a gameobject in relation to the grid.
     {
-        return ((int)pos.x >= 0 && (int)pos.x < gridWidth && (int)pos.z >= 0 );
-        return ((int)pos.z == 0 && (int)pos.z < gridHeight && (int)pos.x >= 0);
+        return (pos.x >= 0 && pos.x < gridWidth && pos.z >= 0 && pos.z < gridHeight );
     }
 
-    public Vector3 Round(Vector3 pos) //Checks so that no "mathf" errors occur. 
+    string SpawnNextTetrisBlock()
     {
-        return new Vector3(Mathf.Round(pos.x), Mathf.Round(pos.y));
+        int randomTetrisBlock = Random.Range(1, 8);
+
+        string randomTetrisObject = "Tetris_Cube_1";
+
+        switch (randomTetrisBlock)
+        {
+            case 1:
+                randomTetrisObject = "";
+                break;
+            case 2:
+                randomTetrisObject = "";
+                break;
+            case 3:
+                randomTetrisObject = "";
+                break;
+
+        }
+        return randomTetrisObject;
     }
+
 }
