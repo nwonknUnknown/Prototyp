@@ -13,6 +13,7 @@ public class GameStartCamera : MonoBehaviour
     private Vector3 animationOffset = new Vector3(0, 5, 5);
 
     [SerializeField] ScoreCounter activateScore;
+    [SerializeField] BlockSpawner frame;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,8 @@ public class GameStartCamera : MonoBehaviour
         {
             transform.position = moveVector;
             activateScore.EnableScore();
+            frame.SwitchOn();
+
         }
         else
         {
