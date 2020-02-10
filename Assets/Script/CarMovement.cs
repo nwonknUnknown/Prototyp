@@ -8,19 +8,16 @@ public class CarMovement : MonoBehaviour
     public KeyCode moveRight;
     public KeyCode moveUp;
     public KeyCode moveDown;
-
     public float horizVelocity = 0;
     public float verticVelocity = 0;
     public string moveLock = "n";
     public int laneNumberX = 3;
     public int laneNumberY = 1;
-
     // Start is called before the first frame update
     void Start()
     {
 
     }
-
     // Update is called once per frame
     void Update()
     {

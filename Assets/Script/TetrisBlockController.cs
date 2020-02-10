@@ -5,115 +5,148 @@ public class TetrisBlockController : MonoBehaviour
 {
     //Denna koden hanterar Tetris kubernas rörelse i spelet. Man kan återanvända dessa för spelaren, men kommer behöva ändra så att spelarens bil kan åka uppåt och neråt, samt att bilen ska inte åka neråt varje frame. 
     public float fallTime = 1; //Handles the time when the block is falling down.
-    public float fallTimeReset = 1; //Used to reset the tetris blocks timer between falling down. It's public, which means it can be changed overtime with the GameManager script.
+    public float fallSpeed = 1; //Handles the speed, that the object is falling in.
     [SerializeField] bool allowRotation = true; //If rotation should be true on this object.
     Bounds tetrisBounds; //Bounds for this tetrisblock.
-    Bounds tetrisBoxes; //Bounds for all tetrisblocks on the scene.
+    Bounds tetrisObjectsInSceneName; //Bounds for all tetrisblocks on the scene.
     Bounds groundBox; //Bounds for the ground.
-    [Header ("The Z axes are the ones you whant to edit in order to edit the speed of the objekt.")]
+    [Header("The Z axes are the ones you whant to edit in order to edit the speed of the objekt.")]
     [SerializeField] Vector3 goingDownSpeed;
-    bool tetrisCubeMoving = true; 
-    [SerializeField] GameObject stillObject; //New object that will spawn.
-    [SerializeField] GameObject[] partsOfThisTetrisBlock; //All the parts of this tetrisblock.
+    [SerializeField] Vector3 goingLeftSpeed;
+    [SerializeField] Vector3 goingRightSpeed;
+    bool tetrisCubeMoving = true;
     [SerializeField] int count; //The amount of tetrisblocks in this row.  
-    [SerializeField] GameObject children;
+    Game rowCalculate;
     // Start is called before the first frame update
     void Start()
     {
-        BoxCollider tetrisCollidersInScene;
-        BoxCollider thisTetrisCollider; 
-        BoxCollider groundCollider;
-        GameObject nameOfCollision;
-        //tetrisObjectsInSceneName = GameObject.FindWithTag("TetrisBlock"); //Searches for all gameobjects with this tag in the scene.
-        nameOfCollision = GameObject.Find("Ground"); //To get acces to the gameobject we want to check collision with.
-        if (nameOfCollision == null) //To check if it's null.
-        {
-            return;
-        }
-        groundCollider = nameOfCollision.GetComponent<BoxCollider>(); //Getting the boxcollider of the groundcollider.
-        //tetrisCollidersInScene = tetrisObjectsInSceneName.GetComponent<BoxCollider>();
-        //tetrisBoxes = tetrisCollidersInScene.bounds;
-        if(groundCollider == null) //To check if it's null.
-        {
-            return;
-        }
-        groundBox = groundCollider.bounds; //We are storing the bounds of the boxcollider for the road.
-        thisTetrisCollider = GetComponent<BoxCollider>();
-        if (thisTetrisCollider == null)
-        {
-            return; 
-        }
-        tetrisBounds = thisTetrisCollider.bounds; //We are storing the bounds of the boxcollider for this tetris block.
-        if (goingDownSpeed.x < 0)
-        {
-            goingDownSpeed.x = -1;
-        }
     }
     // Update is called once per frame
-    void Update()
-    {
-        fallTime -= Time.deltaTime; //Makes falltime be minus the deltatime.
-        float playerInputX;
-        playerInputX = Input.GetAxis("Horizontal");
-        float playerInputZ;
-        playerInputZ = Input.GetAxisRaw("Vertical");
-        float playerInputRotate;
-        playerInputRotate = Input.GetAxisRaw("Rotate");
-        Vector3 position; //A vector we can use to calculate if the tetris block would enter another objekts bounds.  
-        position = transform.position; //Inherenting the objects world position to the position varibale. 
-        Debug.Log($"{position.x + tetrisBounds.extents.x } {groundBox.max.x} ");     
-        if (position.x + tetrisBounds.extents.x + playerInputX > groundBox.max.x && tetrisCubeMoving) //If the objekt would move pass the max bounds of the ground.
+   public void Update()
+    {  
+        //This is old version: 
+        //fallTime -= Time.deltaTime; //Makes falltime be minus the deltatime.
+        //float playerInputX;
+        //playerInputX = Input.GetAxis("Horizontal");
+        //float playerInputZ;
+        //playerInputZ = Input.GetAxisRaw("Vertical");
+        //float playerInputRotate;
+        //playerInputRotate = Input.GetAxisRaw("Rotate");
+        //Vector3 position; //A vector we can use to calculate if the tetris block would enter another objekts bounds.  
+        //position = transform.position; //Inherenting the objects world position to the position varibale. 
+        //Debug.Log($"{position.x + tetrisBounds.extents.x } {groundBox.max.x} ");     
+        //if (position.x + tetrisBounds.extents.x + playerInputX > groundBox.max.x && tetrisCubeMoving) //If the objekt would move pass the max bounds of the ground.
+        //{
+        //    playerInputX = groundBox.max.x - (position.x + tetrisBounds.extents.x); //Make so that it moves as close as possible. 
+        //}       
+        //if(position.x - tetrisBounds.extents.x + playerInputX < groundBox.min.x && tetrisCubeMoving) //If the object would move pass the min bounds of the ground.
+        //{
+        //    playerInputX = groundBox.min.x - (position.x - tetrisBounds.extents.x); //Make so that it moves as close as possible.
+        //}
+        //if (tetrisCubeMoving)
+        //{
+        //    position.x += (playerInputX); //Move the player forward. 
+        //}
+        //if (fallTime <= 0 && tetrisCubeMoving)
+        //{
+        //    fallTime = fallTimeReset;
+        //    position += goingDownSpeed; //Move the tetris block down when the user presses the down arrow. 
+        //}
+        //if ((position.z - tetrisBounds.extents.z + playerInputZ < groundBox.min.z) && tetrisCubeMoving)
+        //{           
+        //    playerInputZ = groundBox.min.z - (position.z - tetrisBounds.extents.z); //Make so that it moves as close as possible.
+        //    tetrisCubeMoving = false;
+        //    rowCalculate.GroundEnter(++count);
+        //}
+        //if (tetrisCubeMoving)
+        //{
+        //    position.z += (playerInputZ); //Move the player forward.  
+        //    if (position.z - tetrisBounds.extents.z < groundBox.min.z)
+        //    {
+        //        tetrisCubeMoving = false;
+        //        rowCalculate.GroundEnter(++count);
+        //    }
+        //}
+        //if (Input.GetKeyDown(KeyCode.UpArrow) && tetrisCubeMoving)
+        //{
+        //    if (allowRotation)
+        //    {
+        //        if (position.x - tetrisBounds.extents.x + playerInputRotate > groundBox.max.x)
+        //        {
+        //            playerInputRotate = groundBox.max.x - (position.x - tetrisBounds.extents.x);
+        //        }
+        //        if (position.x - tetrisBounds.extents.x + playerInputRotate < groundBox.min.x) //If the object would move pass the min bounds of the ground.
+        //        {
+        //            playerInputRotate = groundBox.min.x - (position.x - tetrisBounds.extents.x); //Make so that it moves as close as possible.
+        //        }
+        //        transform.Rotate(0, 90, 0); //Rotates this object. Needs to be fixed to not be able to rotate when stuck in terrain.
+        //    }
+        //}
+        //transform.position = position; //Reseting the transform.
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            playerInputX = groundBox.max.x - (position.x + tetrisBounds.extents.x); //Make so that it moves as close as possible. 
-        }       
-        if(position.x - tetrisBounds.extents.x + playerInputX < groundBox.min.x && tetrisCubeMoving) //If the object would move pass the min bounds of the ground.
-        {
-            playerInputX = groundBox.min.x - (position.x - tetrisBounds.extents.x); //Make so that it moves as close as possible.
-        }
-        if (tetrisCubeMoving)
-        {
-            position.x += (playerInputX); //Move the player forward. 
-        }
-        if (fallTime <= 0 && tetrisCubeMoving)
-        {
-            fallTime = fallTimeReset;
-            position += goingDownSpeed; //Move the tetris block down when the user presses the down arrow. 
-        }
-        if ((position.z - tetrisBounds.extents.z + playerInputZ < groundBox.min.z) && tetrisCubeMoving)
-        {           
-            playerInputZ = groundBox.min.z - (position.z - tetrisBounds.extents.z); //Make so that it moves as close as possible.
-            ++count;
-            tetrisCubeMoving = false;
-            GroundEnter();
-        }
-        if (tetrisCubeMoving)
-        {
-            position.z += (playerInputZ); //Move the player forward.     
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && tetrisCubeMoving)
-        {
-            if (allowRotation)
+            transform.position += goingRightSpeed;
+
+            if (CheckIsValidPosition())
             {
-                if (position.x - tetrisBounds.extents.x + playerInputRotate > groundBox.max.x)
-                {
-                    playerInputRotate = groundBox.max.x - (position.x - tetrisBounds.extents.x);
-                }
-                if (position.x - tetrisBounds.extents.x + playerInputRotate < groundBox.min.x) //If the object would move pass the min bounds of the ground.
-                {
-                    playerInputRotate = groundBox.min.x - (position.x - tetrisBounds.extents.x); //Make so that it moves as close as possible.
-                }
-                transform.Rotate(0, 90, 0); //Rotates this object. Needs to be fixed to not be able to rotate when stuck in terrain.
+            }
+            else
+            {
+                transform.position -= goingRightSpeed;
             }
         }
-        transform.position = position; //Reseting the transform. 
-    }
-    void GroundEnter()
-    { 
-        if(count == 5)
+
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            //partsOfThisTetrisBlock;
+            transform.position += goingLeftSpeed;
+
+            if (CheckIsValidPosition())
+            {
+            }
+            else
+            {
+                transform.position -= goingLeftSpeed;
+            }
+
         }
-        //Instantiate(stillObject,transform.position, transform.rotation); //Skapar kuben.
-        //Destroy(gameObject); //Förstör detta objekt.
-    }    
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            transform.Rotate(0, 90, 0);
+        }
+
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - fallTime >= fallSpeed)
+        {
+            transform.position += goingDownSpeed;
+
+            if (CheckIsValidPosition())
+            {
+
+            }
+            else
+            {
+                transform.position -= goingDownSpeed;
+            }
+
+            fallTime = Time.time;
+
+
+        }
+
+    }
+
+    bool CheckIsValidPosition()
+    {
+        foreach(Transform tetrisCube in transform)
+        {
+            Vector3 pos = FindObjectOfType<Game>().Round(tetrisCube.position); //Check is a tetris is inside the grid.
+
+            if (FindObjectOfType<Game>().CheckIsInsideGrid(pos) == false) //If the tetris cube is inside the grid.
+            {
+               return false;
+            }
+        }
+        return true;
+    }
+
 }
