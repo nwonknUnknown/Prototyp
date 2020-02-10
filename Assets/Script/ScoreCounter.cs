@@ -9,12 +9,13 @@ public class ScoreCounter : MonoBehaviour
     private float scoreModifier = 1;
     
     [SerializeField] Text score; //The text projects the players highscore.
+    [SerializeField] Text block; // Text for next tetris block.
     private bool isEnabled; // A bool that will activate the scorecounting
 
     // Start is called before the first frame update
     void Start()
     {
-        score = FindObjectOfType<Text>(); //getting the text compoment.
+        
     }
 
     // Update is called once per frame
@@ -23,7 +24,7 @@ public class ScoreCounter : MonoBehaviour
         if (isEnabled) // Activates the scorecounting.
         {
             currentScore += 1 * Time.deltaTime * scoreModifier;
-            score.text = $" Highscore: {Mathf.FloorToInt(currentScore)}";
+            score.text = $" Score: {Mathf.FloorToInt(currentScore)}";
         }
     }
 
