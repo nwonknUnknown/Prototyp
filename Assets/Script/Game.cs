@@ -6,17 +6,13 @@ public class Game : MonoBehaviour
 {
    [SerializeField] public static int gridHeight = 20;
    [SerializeField] public static int gridWidth = 10;
-
+   [Tooltip("Skriv _exakta_ namnet för den tetris kub som ska spawna")]
+   [SerializeField] string [] tetriscube;
+   [SerializeField] Transform spawnPoint;
     // Start is called before the first frame update
     void Start()
     {
         SpawnNextTetrisBlock();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void GroundEnter(int counts)
@@ -28,6 +24,22 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void SpawnNextTetrisBlock()
+    {
+        string s = GetRandomTetrisBlock();
+        GameObject nextTetrisBlockString = Resources.Load($"Prefab/{s}", typeof(GameObject)) as GameObject;
+        Debug.Log($"TetrisBlock {s}");
+
+        if (nextTetrisBlockString == null)
+        {
+            Debug.Log("Null");
+            return;  
+        }
+
+        GameObject nextTetrisBlock = Instantiate(nextTetrisBlockString, spawnPoint);
+
+    }
+
 
 
     static public bool CheckIsInsideGrid(Vector3 pos) //Checking if a certain object is within the grid or not and returns the value of the current position of a gameobject in relation to the grid.
@@ -35,26 +47,9 @@ public class Game : MonoBehaviour
         return (pos.x >= 0 && pos.x < gridWidth && pos.z >= 0 && pos.z < gridHeight );
     }
 
-    string SpawnNextTetrisBlock()
-    {
-        int randomTetrisBlock = Random.Range(1, 8);
-
-        string randomTetrisObject = "Tetris_Cube_1";
-
-        switch (randomTetrisBlock)
-        {
-            case 1:
-                randomTetrisObject = "";
-                break;
-            case 2:
-                randomTetrisObject = "";
-                break;
-            case 3:
-                randomTetrisObject = "";
-                break;
-
-        }
-        return randomTetrisObject;
+    string GetRandomTetrisBlock()
+    {      
+        return tetriscube[Random.Range(0, tetriscube.Length)];
     }
 
 }
