@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class ScoreCounter : MonoBehaviour
 {
-    float currentScore = 0;
+    private float currentScore = 0;
+    private float scoreModifier = 1;
     
     [SerializeField] Text score; //The text projects the players highscore.
-    private bool isEnabled = true; // A bool that will activate the scorecounting
+    private bool isEnabled; // A bool that will activate the scorecounting
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +22,26 @@ public class ScoreCounter : MonoBehaviour
     {
         if (isEnabled) // Activates the scorecounting.
         {
-            currentScore += 1 * Time.deltaTime;
-            score.text = $"Highscore: " + Mathf.FloorToInt(currentScore);
+            currentScore += 1 * Time.deltaTime * scoreModifier;
+            score.text = $" Highscore: {Mathf.FloorToInt(currentScore)}";
         }
+    }
+
+    public void EnableScore()
+    {
+        isEnabled = true;
+    }
+
+    public void DisableScore()
+    {
+        isEnabled = false;
+        score.text = $" Highscore: {Mathf.FloorToInt(currentScore)}";
+    }
+
+    public void ChangeModifier(float lifemod)
+    {
+        scoreModifier = lifemod;
+        Debug.Log($"current modifier: {scoreModifier}");
     }
 
 }

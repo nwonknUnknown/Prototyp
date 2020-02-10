@@ -12,6 +12,8 @@ public class GameStartCamera : MonoBehaviour
     private float animationDuration = 3.0f;
     private Vector3 animationOffset = new Vector3(0, 5, 5);
 
+    [SerializeField] ScoreCounter activateScore;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,7 @@ public class GameStartCamera : MonoBehaviour
         if (transition > 1.0f)
         {
             transform.position = moveVector;
+            activateScore.EnableScore();
         }
         else
         {
@@ -37,6 +40,7 @@ public class GameStartCamera : MonoBehaviour
             transform.position = Vector3.Lerp(moveVector + animationOffset, moveVector, transition);
             transition += Time.deltaTime * 1 / animationDuration;
             transform.LookAt(StartCamera.position + Vector3.up);
+
         }
 
         
