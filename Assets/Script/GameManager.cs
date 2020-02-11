@@ -1,28 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class LoseCondition : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
+    States currentState;
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentState = new CameraState();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        currentState = currentState.Do();
     }
-
-     public void CheckGameOver()
-    {
-        //if (health < 1)
-        {
-            SceneManager.LoadScene("GameOver");
-        }
-    }
-
 }

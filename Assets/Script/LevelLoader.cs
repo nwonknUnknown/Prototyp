@@ -18,13 +18,13 @@ public class LevelLoader : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            LoadNextLevel();
+            LoadNextLevel(2);
         }
     }
 
-    public void LoadNextLevel()
+    public void LoadNextLevel(int i)
     {
-        StartCoroutine(LoadLevel(2));
+        StartCoroutine(LoadLevel(i));
     }
 
     IEnumerator LoadLevel (int levelIndex)
