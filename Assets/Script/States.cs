@@ -1,39 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class States
+public abstract class States
 {
     public virtual States Do()
     {
-        return this;
+        return null;
     }
-
-}
-class WaitState : States
-{
-    public override States Do()
-    {
-        return this;
-    }
-}
-
-class TetrisGameState : States
-{
-    public override States Do()
-    {
-        return base.Do();
-    }
-
-
-
 }
 
 class EndState : States
 {
+    private LoseCondition scene;
     public override States Do()
     {
-        return base.Do();
+        return null;
     }
 }
 
