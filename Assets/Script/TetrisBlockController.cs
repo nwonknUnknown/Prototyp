@@ -82,7 +82,7 @@ public class TetrisBlockController : MonoBehaviour
                 else
                 {
                     Debug.Log($"Position {transform.position}"); transform.position -= goingDownSpeed;
-                    tetrisCubeMoving = false;
+                    enabled = false;
                     gameManager.SpawnNextTetrisBlock(count);
                 }
                 fallTime = Time.time;

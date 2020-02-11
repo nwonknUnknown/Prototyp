@@ -9,7 +9,7 @@ public class Game : MonoBehaviour
    [Tooltip("Skriv _exakta_ namnet för den tetris kub som ska spawna")]
    [SerializeField] string [] tetrisCubeName;
    [SerializeField] Transform spawnPoint;
-    public static Transform[,] grid = new Transform[gridWidth, gridHeight];
+    private static Transform[,] grid = new Transform[gridWidth, gridHeight];
     GameObject[] tetrisCubes; 
     protected bool count;
 
@@ -39,32 +39,11 @@ public class Game : MonoBehaviour
     }
 
     public void UpdateGrid(TetrisBlockController tetrisBlocks) //Uppdaterar valbara platser i griden.
-    {
+    {    
+        foreach(Transform children in transform)
+        {
 
-        //for(int z = 0; z < gridHeight; ++z)
-        //{
-        //    for(int x = 0; x < gridWidth; ++x)
-        //    {
-        //        if(grid[x,z] != null)
-        //        {
-        //            if (grid[x, z].parent == tetrisBlocks.transform)
-        //            {
-        //                grid[x, z] = null;
-        //            }
-        //        }
-                
-        //    }
-        //}
-        //foreach (Transform obj in tetrisBlocks.transform)
-        //{
-        //    //Position of tetrisblock.
-        //    Vector3 pos = Round(obj.position);
-        //   if(pos.z < gridHeight)
-        //    {
-        //        grid[(int)pos.x, (int)pos.z] = obj;
-        //    }
-        //}
-
+        }
     }
 
     public Transform GetTransformAtGridPosition(Vector3 pos)
