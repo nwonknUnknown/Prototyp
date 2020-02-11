@@ -11,7 +11,7 @@ public class HealthMeter : MonoBehaviour
     int[] checks = { 0, 20, 40, 60, 80, 100, 101 };
 
     [SerializeField] ScoreCounter playerScore;
-    [SerializeField] LevelManager scene;
+    [SerializeField] LoseCondition scene;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +64,6 @@ public class HealthMeter : MonoBehaviour
 
     public void ZeroLife()
     {
-        scene.StartGame();
+        scene.CheckGameOver();
     }
 }
