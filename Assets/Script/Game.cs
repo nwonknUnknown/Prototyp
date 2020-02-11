@@ -9,10 +9,14 @@ public class Game : MonoBehaviour
    [Tooltip("Skriv _exakta_ namnet för den tetris kub som ska spawna")]
    [SerializeField] string [] tetriscube;
    [SerializeField] Transform spawnPoint;
+    public static Transform[,] grid = new Transform[gridWidth, gridHeight];
+    protected bool count;
+
     // Start is called before the first frame update
     void Start()
     {
-        SpawnNextTetrisBlock();
+        count = true;
+        SpawnNextTetrisBlock(count);        
     }
 
     public void GroundEnter(int counts)
@@ -24,7 +28,46 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void SpawnNextTetrisBlock()
+    public void UpdateGrid(TetrisBlockController tetrisBlocks)
+    {
+        for(int z = 0; z < gridHeight; ++z)
+        {
+            for(int x = 0; x < gridWidth; ++x)
+            {
+                if(grid[x,z] != null)
+                {
+                    if (grid[x, z].parent == tetrisBlocks.transform)
+                    {
+                        grid[x, z] = null;
+                    }
+                }
+                
+            }
+        }
+        foreach (Transform obj in tetrisBlocks.transform)
+        {
+            //Position of tetrisblock.
+            Vector3 pos = Round(obj.position);
+           if(pos.z < gridHeight)
+            {
+                grid[(int)pos.x, (int)pos.z] = obj;
+            }
+        }
+    }
+
+    public Transform GetTransformAtGridPosition(Vector3 pos)
+    {
+        if(pos.y > gridHeight - 1)
+        {
+            return null;
+        }
+        else
+        {
+            return grid[(int)pos.x,(int)pos.z];
+        }
+    }
+
+    public void SpawnNextTetrisBlock(bool count)
     {
         string s = GetRandomTetrisBlock();
         GameObject nextTetrisBlockString = Resources.Load($"Prefab/{s}", typeof(GameObject)) as GameObject;
@@ -32,11 +75,16 @@ public class Game : MonoBehaviour
 
         if (nextTetrisBlockString == null)
         {
-            Debug.Log("Null");
-            return;  
+            Debug.Log("Null");              
+        }
+        
+        if (count)
+        {
+            GameObject nextTetrisBlock = Instantiate(nextTetrisBlockString, spawnPoint);
+            count = false;
         }
 
-        GameObject nextTetrisBlock = Instantiate(nextTetrisBlockString, spawnPoint);
+
 
     }
 
@@ -48,6 +96,11 @@ public class Game : MonoBehaviour
     string GetRandomTetrisBlock()
     {      
         return tetriscube[Random.Range(0, tetriscube.Length)];
+    }
+
+    public Vector3 Round (Vector3 pos)
+    {
+        return new Vector3(Mathf.Round(pos.x), Mathf.Round(pos.z));
     }
 
 }
