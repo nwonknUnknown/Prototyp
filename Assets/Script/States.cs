@@ -9,11 +9,6 @@ public class States
         return this;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 }
 class WaitState : States
 {
@@ -23,28 +18,13 @@ class WaitState : States
     }
 }
 
-class FrameBlockState : States
-{
-    public override States Do()
-    {
-        return base.Do();
-    }
-}
-
 class TetrisGameState : States
 {
     public override States Do()
     {
         return base.Do();
     }
-}
 
-class BackgroundState : States
-{
-    public override States Do()
-    {
-        return base.Do();
-    }
 }
 
 class EndState : States
