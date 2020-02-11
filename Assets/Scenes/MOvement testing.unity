@@ -443,6 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activateScore: {fileID: 0}
+  frame: {fileID: 0}
 --- !u!1 &1887293992
 GameObject:
   m_ObjectHideFlags: 0
