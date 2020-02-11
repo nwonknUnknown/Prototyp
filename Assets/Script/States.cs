@@ -15,34 +15,45 @@ public class States
 
     }
 }
-    class WaitState : States
+class WaitState : States
+{
+    public override States Do()
     {
-        public override States Do()
-        {
-            return this;
-        }
+        return this;
     }
+}
 
-    class FrameBlockState : States
+class FrameBlockState : States
+{
+    public override States Do()
     {
-        public override States Do()
-        {
-            return base.Do();
-        }
+        return base.Do();
     }
+}
 
-    class BackgroundState : States
+class TetrisGameState : States
+{
+    public override States Do()
     {
-        
+        return base.Do();
     }
+}
 
-    class EndState : States
+class BackgroundState : States
+{
+    public override States Do()
     {
-        public override States Do()
-        {
-            return base.Do();
-        }
+        return base.Do();
     }
+}
+
+class EndState : States
+{
+    public override States Do()
+    {
+        return base.Do();
+    }
+}
 
 
 
