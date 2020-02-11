@@ -14,6 +14,8 @@ public class TetrisBlockController : MonoBehaviour
     bool count = true; //The amount of tetrisblocks in this row.  
     Game gameManager; //Game class.
     private bool tetrisCubeMoving = true; //Check if the tetriscube should move or not.
+    int row; //Den row som denna tetriskub är på. 
+    int colum; //Denna colum som denna tetriskub är på.
 
     private void Start()
     {
@@ -22,68 +24,71 @@ public class TetrisBlockController : MonoBehaviour
 
     // Update is called once per frame
     public void Update()
-    {  
-
-        if (Input.GetKeyDown(KeyCode.RightArrow) && tetrisCubeMoving)
+    {
+        if (tetrisCubeMoving)
         {
-            transform.position += goingRightSpeed;
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                transform.position += goingRightSpeed;
+                ++colum;
 
-            if (CheckIsValidPosition())
-            {
-                gameManager.UpdateGrid(this);
+                if (CheckIsValidPosition())
+                {
+                    gameManager.UpdateGrid(this);
+                }
+                else
+                {
+                    transform.position -= goingRightSpeed;
+                }
             }
-            else
+
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                transform.position -= goingRightSpeed;
+                transform.position += goingLeftSpeed;
+                --colum;
+
+                if (CheckIsValidPosition())
+                {
+                    gameManager.UpdateGrid(this);
+                }
+                else
+                {
+                    transform.position -= goingLeftSpeed;
+                }
+
+            }
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                transform.Rotate(0, 90, 0);
+                if (CheckIsValidPosition())
+                {
+                    gameManager.UpdateGrid(this);
+                }
+                else
+                {
+                    transform.Rotate(0, -90, 0);
+                }
+            }
+
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - fallTime >= fallSpeed)
+            {
+                transform.position += goingDownSpeed;
+
+                if (CheckIsValidPosition())
+                {
+                    Debug.Log("Valid");
+                    gameManager.UpdateGrid(this);
+                }
+                else
+                {
+                    Debug.Log($"Position {transform.position}"); transform.position -= goingDownSpeed;
+                    tetrisCubeMoving = false;
+                    gameManager.SpawnNextTetrisBlock(count);
+                }
+                fallTime = Time.time;
+
             }
         }
-
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) && tetrisCubeMoving)
-        {
-            transform.position += goingLeftSpeed;
-
-            if (CheckIsValidPosition())
-            {
-                gameManager.UpdateGrid(this);
-            }
-            else
-            {
-                transform.position -= goingLeftSpeed;
-            }
-
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow) && tetrisCubeMoving)
-        {
-            transform.Rotate(0, 90, 0);
-            if (CheckIsValidPosition())
-            {
-                gameManager.UpdateGrid(this);
-            }
-            else
-            {
-                transform.Rotate(0, -90, 0);
-            }
-        }
-
-        else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - fallTime >= fallSpeed && tetrisCubeMoving)
-        {
-            transform.position += goingDownSpeed;
-
-            if (CheckIsValidPosition())
-            {
-                Debug.Log("Valid");
-                gameManager.UpdateGrid(this);
-            }
-            else
-            {
-                Debug.Log($"Position {transform.position}");  transform.position -= goingDownSpeed;
-                tetrisCubeMoving = false;
-                gameManager.SpawnNextTetrisBlock(count);
-            }
-            fallTime = Time.time;
-
-        }
-
     }
 
     bool CheckIsValidPosition()
