@@ -10,11 +10,13 @@ public class Game : MonoBehaviour
    [SerializeField] string [] tetriscube;
    [SerializeField] Transform spawnPoint;
     public static Transform[,] grid = new Transform[gridWidth, gridHeight];
+    protected bool count;
 
     // Start is called before the first frame update
     void Start()
     {
-        SpawnNextTetrisBlock();
+        count = true;
+        SpawnNextTetrisBlock(count);        
     }
 
     public void GroundEnter(int counts)
@@ -65,7 +67,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void SpawnNextTetrisBlock()
+    public void SpawnNextTetrisBlock(bool count)
     {
         string s = GetRandomTetrisBlock();
         GameObject nextTetrisBlockString = Resources.Load($"Prefab/{s}", typeof(GameObject)) as GameObject;
@@ -75,8 +77,13 @@ public class Game : MonoBehaviour
         {
             Debug.Log("Null");              
         }
+        
+        if (count)
+        {
+            GameObject nextTetrisBlock = Instantiate(nextTetrisBlockString, spawnPoint);
+            count = false;
+        }
 
-        GameObject nextTetrisBlock = Instantiate(nextTetrisBlockString, spawnPoint);
 
 
     }

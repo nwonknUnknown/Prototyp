@@ -11,9 +11,14 @@ public class TetrisBlockController : MonoBehaviour
     [SerializeField] Vector3 goingDownSpeed; //Hastighet Z
     [SerializeField] Vector3 goingLeftSpeed; //Hastighet X
     [SerializeField] Vector3 goingRightSpeed;//Hastighet -X
-    int count; //The amount of tetrisblocks in this row.  
+    bool count = true; //The amount of tetrisblocks in this row.  
     Game gameManager; //Game class.
     private bool tetrisCubeMoving = true; //Check if the tetriscube should move or not.
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<Game>(); 
+    }
 
     // Update is called once per frame
     public void Update()
@@ -25,7 +30,7 @@ public class TetrisBlockController : MonoBehaviour
 
             if (CheckIsValidPosition())
             {
-                FindObjectOfType<Game>().UpdateGrid(this);
+                gameManager.UpdateGrid(this);
             }
             else
             {
@@ -39,7 +44,7 @@ public class TetrisBlockController : MonoBehaviour
 
             if (CheckIsValidPosition())
             {
-                FindObjectOfType<Game>().UpdateGrid(this);
+                gameManager.UpdateGrid(this);
             }
             else
             {
@@ -52,7 +57,7 @@ public class TetrisBlockController : MonoBehaviour
             transform.Rotate(0, 90, 0);
             if (CheckIsValidPosition())
             {
-                FindObjectOfType<Game>().UpdateGrid(this);
+                gameManager.UpdateGrid(this);
             }
             else
             {
@@ -67,13 +72,13 @@ public class TetrisBlockController : MonoBehaviour
             if (CheckIsValidPosition())
             {
                 Debug.Log("Valid");
-                FindObjectOfType<Game>().UpdateGrid(this);
+                gameManager.UpdateGrid(this);
             }
             else
             {
                 Debug.Log($"Position {transform.position}");  transform.position -= goingDownSpeed;
                 tetrisCubeMoving = false;
-                FindObjectOfType<Game>().SpawnNextTetrisBlock();
+                gameManager.SpawnNextTetrisBlock(count);
             }
             fallTime = Time.time;
 
@@ -86,14 +91,14 @@ public class TetrisBlockController : MonoBehaviour
         foreach(Transform tetrisCube in transform)
         {
 
-            Vector3 pos = FindObjectOfType<Game>().Round(tetrisCube.position);
+            Vector3 pos = gameManager.Round(tetrisCube.position);
 
             if (Game.CheckIsInsideGrid(tetrisCube.position) == false) //If the tetris cube is inside the grid.
             {
                return false;
             }
 
-            if (FindObjectOfType<Game>().GetTransformAtGridPosition(pos) != null && FindObjectOfType<Game>().GetTransformAtGridPosition(pos).parent != transform) 
+            if (gameManager.GetTransformAtGridPosition(pos) != null && gameManager.GetTransformAtGridPosition(pos).parent != transform) 
             {
                 return false;
             }
