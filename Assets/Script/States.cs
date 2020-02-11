@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class States : MonoBehaviour
+public class States
 {
-    public virtual States Do() {
+    public virtual States Do()
+    {
         return this;
     }
+
     // Start is called before the first frame update
     void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
     {
 
     }
@@ -27,9 +23,25 @@ public class States : MonoBehaviour
         }
     }
 
-    class FrameBlock : States
+    class FrameBlockState : States
     {
+        public override States Do()
+        {
+            return base.Do();
+        }
+    }
 
+    class BackgroundState : States
+    {
+        
+    }
+
+    class EndState : States
+    {
+        public override States Do()
+        {
+            return base.Do();
+        }
     }
 
 
