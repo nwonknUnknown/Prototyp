@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthMeter : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class HealthMeter : MonoBehaviour
     int[] checks = { 0, 20, 40, 60, 80, 100, 101 };
 
     [SerializeField] ScoreCounter playerScore;
+    [SerializeField] LevelManager scene;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,7 @@ public class HealthMeter : MonoBehaviour
             {
                 //  DestroyObject("Car");
                 playerScore.DisableScore();
+                ZeroLife();
             }
         }
         if (Input.GetKeyDown(KeyCode.C))
@@ -57,5 +60,10 @@ public class HealthMeter : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void ZeroLife()
+    {
+        scene.StartGame();
     }
 }
