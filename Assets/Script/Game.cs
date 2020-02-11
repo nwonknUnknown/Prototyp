@@ -7,14 +7,24 @@ public class Game : MonoBehaviour
    [SerializeField] public static int gridHeight = 20;
    [SerializeField] public static int gridWidth = 10;
    [Tooltip("Skriv _exakta_ namnet för den tetris kub som ska spawna")]
-   [SerializeField] string [] tetriscube;
+   [SerializeField] string [] tetrisCubeName;
    [SerializeField] Transform spawnPoint;
     public static Transform[,] grid = new Transform[gridWidth, gridHeight];
+    GameObject[] tetrisCubes; 
     protected bool count;
 
     // Start is called before the first frame update
     void Start()
     {
+        tetrisCubes = new GameObject[tetrisCubeName.Length];
+        
+        for (int i = 0; i < tetrisCubeName.Length; ++i)
+        {
+            tetrisCubes[i] = Resources.Load($"Prefab/{tetrisCubeName[i]}", typeof(GameObject)) as GameObject;
+        }
+        {
+           
+        }
         count = true;
         SpawnNextTetrisBlock(count);        
     }
@@ -28,31 +38,33 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void UpdateGrid(TetrisBlockController tetrisBlocks)
+    public void UpdateGrid(TetrisBlockController tetrisBlocks) //Uppdaterar valbara platser i griden.
     {
-        for(int z = 0; z < gridHeight; ++z)
-        {
-            for(int x = 0; x < gridWidth; ++x)
-            {
-                if(grid[x,z] != null)
-                {
-                    if (grid[x, z].parent == tetrisBlocks.transform)
-                    {
-                        grid[x, z] = null;
-                    }
-                }
+
+        //for(int z = 0; z < gridHeight; ++z)
+        //{
+        //    for(int x = 0; x < gridWidth; ++x)
+        //    {
+        //        if(grid[x,z] != null)
+        //        {
+        //            if (grid[x, z].parent == tetrisBlocks.transform)
+        //            {
+        //                grid[x, z] = null;
+        //            }
+        //        }
                 
-            }
-        }
-        foreach (Transform obj in tetrisBlocks.transform)
-        {
-            //Position of tetrisblock.
-            Vector3 pos = Round(obj.position);
-           if(pos.z < gridHeight)
-            {
-                grid[(int)pos.x, (int)pos.z] = obj;
-            }
-        }
+        //    }
+        //}
+        //foreach (Transform obj in tetrisBlocks.transform)
+        //{
+        //    //Position of tetrisblock.
+        //    Vector3 pos = Round(obj.position);
+        //   if(pos.z < gridHeight)
+        //    {
+        //        grid[(int)pos.x, (int)pos.z] = obj;
+        //    }
+        //}
+
     }
 
     public Transform GetTransformAtGridPosition(Vector3 pos)
@@ -69,9 +81,7 @@ public class Game : MonoBehaviour
 
     public void SpawnNextTetrisBlock(bool count)
     {
-        string s = GetRandomTetrisBlock();
-        GameObject nextTetrisBlockString = Resources.Load($"Prefab/{s}", typeof(GameObject)) as GameObject;
-        Debug.Log($"TetrisBlock {s}");
+        GameObject nextTetrisBlockString = tetrisCubes[Random.Range(0, tetrisCubeName.Length)];
 
         if (nextTetrisBlockString == null)
         {
@@ -91,11 +101,6 @@ public class Game : MonoBehaviour
     static public bool CheckIsInsideGrid(Vector3 pos) //Checking if a certain object is within the grid or not and returns the value of the current position of a gameobject in relation to the grid.
     {
         return (pos.x >= 0 && pos.x < gridWidth && pos.z >= 0 && pos.z < gridHeight );
-    }
-
-    string GetRandomTetrisBlock()
-    {      
-        return tetriscube[Random.Range(0, tetriscube.Length)];
     }
 
     public Vector3 Round (Vector3 pos)
