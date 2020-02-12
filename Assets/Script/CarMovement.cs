@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarMovement : MonoBehaviour
 {
-   // [SerializeField] HealthMeter hpMeter;
+    [SerializeField] HealthMeter hpMeter;
    // [SerializeField] TetrisBlockController currentBlock;
     public KeyCode moveLeft;
     public KeyCode moveRight;
@@ -15,6 +15,8 @@ public class CarMovement : MonoBehaviour
     public string moveLock = "n";
     public int laneNumberX = 3;
     public int laneNumberY = 1;
+
+    private bool preventMovement = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,10 @@ public class CarMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!preventMovement)
+        {
+            return;
+        }
         GetComponent<Rigidbody>().velocity = new Vector3(horizVelocity, 0, verticVelocity);
 
         if ((Input.GetKeyDown(moveLeft) && (laneNumberX > 1) && (moveLock == "n")))
@@ -61,5 +67,9 @@ public class CarMovement : MonoBehaviour
             verticVelocity = 0;
             moveLock = "n";
         }
+    }
+    public void SetEnabled(bool newValue)
+    {
+        preventMovement = newValue;
     }
 }

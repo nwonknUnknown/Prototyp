@@ -6,18 +6,29 @@ class GameState : States
     Game block;
     ScoreCounter score;
     GameObject scoreboard;
+    CarMovement car;
+    GameObject carObject;
 
     private bool gameOver;
+    private bool firstTime = false;
 
     public GameState()
     {
         scoreboard = GameObject.Find("HighscoreCounter");
         score = scoreboard.GetComponent<ScoreCounter>();
-        score.EnableScore();
     }
 
     public override States Do()
     {
+        if (firstTime)
+        {
+            carObject = GameObject.Find("Car(Clone)");
+            car = carObject.GetComponent<CarMovement>();
+
+            car.SetEnabled(true);
+            score.EnableScore();
+            firstTime = false;
+        }
 
         if (gameOver) // When the car is dead we enter EndState
         {
@@ -27,10 +38,17 @@ class GameState : States
         return this;
     }
 
-    public void Switch()
+    public void GameOver()
     {
         gameOver = true;
     }
+
+    public void FirstTime()
+    {
+        firstTime = true;
+    }
+
+
 
 
 
