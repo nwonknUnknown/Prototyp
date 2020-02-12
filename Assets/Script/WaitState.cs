@@ -17,7 +17,7 @@ public class WaitState : States
     {
         txt = GameObject.Find("Wait_Text").GetComponent<Text>();
         blockManager = new GameState();
-        block.SpawnNextTetrisBlock(true);
+        block.SpawnNextTetrisBlock();
     }
 
     public override States Do()
