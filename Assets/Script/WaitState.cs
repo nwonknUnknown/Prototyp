@@ -25,7 +25,6 @@ public class WaitState : States
 
     public override States Do()
     {
-
         timeLeft -= Time.deltaTime;
 
         if (spawnCar)
@@ -34,16 +33,14 @@ public class WaitState : States
             spawnCar = false;
             Debug.Log("carishere");
         }
-
         if (timeLeft <= 0)
         {
-            txt.text = "";
+            GameObject.Destroy(txt.gameObject);
             blockManager.FirstTime();
             return (blockManager);
             
         }
         txt.text = $"{Mathf.FloorToInt(timeLeft)}";
-
         return this;
     }
 }
