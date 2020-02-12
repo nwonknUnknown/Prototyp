@@ -38,7 +38,7 @@ class GameState : States
         return this;
     }
 
-    public void Switch()
+    public void GameOver()
     {
         gameOver = true;
     }

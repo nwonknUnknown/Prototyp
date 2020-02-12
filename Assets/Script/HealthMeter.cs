@@ -34,7 +34,7 @@ public class HealthMeter : MonoBehaviour
             {
                 //  DestroyObject("Car");
                 playerScore.DisableScore();
-                state.Switch();
+                state.GameOver();
             }
         }
         if (Input.GetKeyDown(KeyCode.C))

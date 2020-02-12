@@ -16,7 +16,7 @@ public class CarMovement : MonoBehaviour
     public int laneNumberX = 3;
     public int laneNumberY = 1;
 
-    private bool enabled = false;
+    private bool preventMovement = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +25,7 @@ public class CarMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!enabled)
+        if (!preventMovement)
         {
             return;
         }
@@ -70,6 +70,6 @@ public class CarMovement : MonoBehaviour
     }
     public void SetEnabled(bool newValue)
     {
-        enabled = newValue;
+        preventMovement = newValue;
     }
 }
