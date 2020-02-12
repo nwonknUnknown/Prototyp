@@ -5,18 +5,21 @@ class GameState : States
 {
     Game block;
     ScoreCounter score;
+    GameObject scoreboard;
 
-    private bool oneTime;
+    private bool gameOver;
 
     public GameState()
     {
+        scoreboard = GameObject.Find("HighscoreCounter");
+        score = scoreboard.GetComponent<ScoreCounter>();
         score.EnableScore();
     }
 
     public override States Do()
     {
 
-        if (oneTime == true) // When the car is dead we enter EndState
+        if (gameOver) // When the car is dead we enter EndState
         {
             score.DisableScore();
             return (new EndState());
@@ -26,7 +29,7 @@ class GameState : States
 
     public void Switch()
     {
-        oneTime = true;
+        gameOver = true;
     }
 
 
