@@ -34,8 +34,6 @@ public class GameStartCamera : MonoBehaviour
         {
             transform.position = moveVector;
             activateScore.EnableScore();
-            frame.FrameBlock();
-
         }
         else
         {

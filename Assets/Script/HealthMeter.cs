@@ -12,6 +12,7 @@ public class HealthMeter : MonoBehaviour
 
     [SerializeField] ScoreCounter playerScore;
     [SerializeField] LoseCondition scene;
+    GameState state;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,7 @@ public class HealthMeter : MonoBehaviour
             {
                 //  DestroyObject("Car");
                 playerScore.DisableScore();
-                ZeroLife();
+                state.Switch();
             }
         }
         if (Input.GetKeyDown(KeyCode.C))
@@ -60,10 +61,5 @@ public class HealthMeter : MonoBehaviour
                 break;
             }
         }
-    }
-
-    public void ZeroLife()
-    {
-        scene.CheckGameOver();
     }
 }

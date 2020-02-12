@@ -12,6 +12,7 @@ public class Game : MonoBehaviour
     private static Transform[,] grid = new Transform[gridWidth, gridHeight];
     GameObject[] tetrisCubes; 
     protected bool count;
+    BlockSpawner frame;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +71,7 @@ public class Game : MonoBehaviour
         if (count)
         {
             GameObject nextTetrisBlock = Instantiate(nextTetrisBlockString, spawnPoint);
+            frame.FrameBlock(nextTetrisBlock);
             count = false;
         }
 

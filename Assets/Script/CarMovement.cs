@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CarMovement : MonoBehaviour
 {
+   // [SerializeField] HealthMeter hpMeter;
+   // [SerializeField] TetrisBlockController currentBlock;
     public KeyCode moveLeft;
     public KeyCode moveRight;
     public KeyCode moveUp;

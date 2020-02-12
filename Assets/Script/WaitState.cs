@@ -7,18 +7,22 @@ public class WaitState : States
 {
     private float timeLeft = 4.0f;
     private Text txt;
+
+
     GameObject Frame;
-    GameObject block;
+    Game block;
     GameState blockManager;
 
     public WaitState()
     {
         txt = GameObject.Find("Wait_Text").GetComponent<Text>();
         blockManager = new GameState();
+        block.SpawnNextTetrisBlock(true);
     }
 
     public override States Do()
     {
+
         timeLeft -= Time.deltaTime;
 
         if (timeLeft <= 0)

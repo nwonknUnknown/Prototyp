@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlockSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject block;
+    
     [SerializeField] Transform parent;
     
     // Start is called before the first frame update
@@ -19,7 +19,7 @@ public class BlockSpawner : MonoBehaviour
 
     }
 
-    public void FrameBlock()
+    public void FrameBlock(GameObject block)
     {
         Vector3 scale;
         GameObject go;
