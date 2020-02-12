@@ -37,8 +37,10 @@ public class WaitState : States
 
         if (timeLeft <= 0)
         {
+            txt.text = "";
             blockManager.FirstTime();
             return (blockManager);
+            
         }
         txt.text = $"{Mathf.FloorToInt(timeLeft)}";
 
