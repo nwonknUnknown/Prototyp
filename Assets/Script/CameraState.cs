@@ -16,7 +16,7 @@ class CameraState : States
     public CameraState()
     {
         camera = Camera.main;
-        StartCamera = GameObject.FindGameObjectWithTag("Car").transform;
+        StartCamera = GameObject.Find("Car_Spawn_Point").transform;
         StartOffset = camera.transform.position - StartCamera.position;
     }
 
