@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 class GameState : States
 {
-    [SerializeField] GameObject[] tetrisObjects;
+    GameObject[] tetrisObjects;
     [SerializeField] Transform parent;
     [SerializeField] Vector3 rotate;
     private TetrisBlockController saved;
@@ -12,28 +12,34 @@ class GameState : States
     GameObject scoreboard;
     CarMovement car;
     GameObject carObject;
-
+    Vector3 framePos;
+    private string[] tetrisBlockNames = {"Cube_Block", "L_Block", "Line_Block", "T_Block", "Z_Block", "Mirror_L_Block", "Mirror_Z_Block" };
     private bool gameOver;
     private bool firstTime = false;
 
-    public GameState(GameObject frameBlock)
+    public GameState()
     {
         scoreboard = GameObject.Find("HighscoreCounter");
         score = scoreboard.GetComponent<ScoreCounter>();
 
-        block = frameBlock;
+
+        framePos = GameObject.Find("Block_Spawn_Point").transform.position;
+
+
+
+
     }
 
     public override States Do()
     {
         if (firstTime)
         {
-            carObject = GameObject.Find("Car(Clone)");
+            carObject = GameObject.Find("Car 1(Clone)");
             car = carObject.GetComponent<CarMovement>();
 
             car.SetEnabled(true);
             score.EnableScore();
-            MoveTetrisBlock(block.gameObject, GameObject.Find("Block_Spawn_Point").transform.position);
+            MoveTetrisBlock(block, framePos);
             firstTime = false;
         }
 
@@ -50,7 +56,7 @@ class GameState : States
     public GameObject SpawnNextTetrisBlock()
     {
         GameObject go;
-        go = Instantiate(tetrisObjects[Random.Range(0, tetrisObjects.Length)], transform.position, Quaternion.identity);
+        go = GameObject.Instantiate(tetrisObjects[Random.Range(0, tetrisObjects.Length)], framePos, Quaternion.identity);
         go.transform.Rotate(rotate);
         saved = go.GetComponent<TetrisBlockController>();
         saved.SetMovable(false);

@@ -10,7 +10,6 @@ public class WaitState : States
 
 
     GameObject Frame;
-    Game block;
     GameState blockManager;
     GameObject car;
 
@@ -21,10 +20,10 @@ public class WaitState : States
         txt = GameObject.Find("Wait_Text").GetComponent<Text>();
 
         Frame = GameObject.Find("Next_Block_Object");
-        block = Frame.GetComponent<Game>();
-        GameObject tetrisBlock = block.SpawnNextTetrisBlock();
+        blockManager = new GameState();
 
-        blockManager = new GameState(tetrisBlock);
+        GameObject tetrisBlock = blockManager.SpawnNextTetrisBlock();
+
     }
 
     public override States Do()

@@ -317,6 +317,9 @@ MonoBehaviour:
   healthBar: {fileID: 1712213305}
   playerScore: {fileID: 643712334}
   scene: {fileID: 0}
+  invincibilityLength: 0
+  invincibilityCounter: 0
+  flashLength: 0.1
 --- !u!1 &255402947
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,34 +447,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1604256258}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &626902067 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4072892334776279993, guid: c973cac141072e5459d29006880f04f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1604256258}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &626902068 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4072892334776279994, guid: c973cac141072e5459d29006880f04f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1604256258}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &626902069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 626902067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1dd1a2eec114934ca8336f1436c8c14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tetrisObjects:
-  - {fileID: 3541488098721109934, guid: d19e126a187524940be7bb38d70ce603, type: 3}
-  parent: {fileID: 626902068}
-  rotate: {x: 5, y: 80, z: 19}
 --- !u!1 &643712330
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,6 +772,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -883,6 +859,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activateScore: {fileID: 643712334}
   frame: {fileID: 0}
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcd06815c47d30489f70df42db56a48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frustumSettings:
+    baseSettings: {fileID: 0}
+    qualitySettings: {fileID: 1110921887}
 --- !u!1 &1012342507
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +917,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1110921887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8334a49e76cafef4da22976db1613959, type: 3}
+  m_Name: Default Aura Quality Settings
+  m_EditorClassIdentifier: 
+  displayVolumetricLightingBuffer: 0
+  frustumGridResolution: {x: 160, y: 88, z: 128}
+  enableAutomaticStereoResizing: 1
+  farClipPlaneDistance: 128
+  depthBiasCoefficient: 0.35
+  enableVolumes: 1
+  enableVolumesTexture2DMask: 1
+  enableVolumesTexture3DMask: 1
+  enableVolumesNoiseMask: 1
+  enableAmbientLighting: 1
+  enableDirectionalLights: 1
+  enableDirectionalLightsShadows: 1
+  enableSpotLights: 1
+  enableSpotLightsShadows: 1
+  enablePointLights: 1
+  enablePointLightsShadows: 1
+  enableLightsCookies: 1
+  enableDithering: 1
+  texture3DFiltering: 1
+  EXPERIMENTAL_enableDenoisingFilter: 0
+  EXPERIMENTAL_denoisingFilterRange: 0
+  EXPERIMENTAL_enableBlurFilter: 0
+  EXPERIMENTAL_blurFilterRange: 0
+  EXPERIMENTAL_blurFilterType: 0
+  EXPERIMENTAL_blurFilterGaussianDeviation: 0.0025
+  enableTemporalReprojection: 1
+  temporalReprojectionFactor: 0.95
+  enableOcclusionCulling: 1
+  debugOcclusionCulling: 0
+  occlusionCullingAccuracy: 0
+  enableLightProbes: 0
 --- !u!1 &1308922950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,6 +1466,9 @@ MonoBehaviour:
   healthBar: {fileID: 1712213305}
   playerScore: {fileID: 643712334}
   scene: {fileID: 489183}
+  invincibilityLength: 0
+  invincibilityCounter: 0
+  flashLength: 0.1
 --- !u!1 &1889870362
 GameObject:
   m_ObjectHideFlags: 0
