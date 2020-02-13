@@ -13,7 +13,7 @@ class GameState : States
     CarMovement car;
     GameObject carObject;
     Vector3 framePos;
-    private string[] tetrisBlockNames = {"Cube_Block", "L_Block", "Line_Block", "T_Block", "Z_Block", "Mirror_L_Block", "Mirror_Z_Block" };
+    private string[] tetrisBlockNames = { "Tetris_Cube_1", "Tetris_Cube_2", "Tetris_Cube_3", "Tetris_Cube_4", "Tetris_Cube_5", "Tetris_Cube_6", "Tetris_Cube_7" };
     private bool gameOver;
     private bool firstTime = false;
 
