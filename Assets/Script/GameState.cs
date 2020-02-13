@@ -26,7 +26,12 @@ class GameState : States
         framePos = GameObject.Find("Block_Spawn_Point").transform.position;
 
 
+        tetrisObjects = new GameObject[tetrisBlockNames.Length];
+        for(int i = 0; i<tetrisBlockNames.Length; i++)
+        {
+            tetrisObjects[i] = Resources.Load($"Prefab/{tetrisBlockNames[i]}") as GameObject;
 
+        }
 
     }
 
@@ -55,12 +60,11 @@ class GameState : States
 
     public GameObject SpawnNextTetrisBlock()
     {
-        GameObject go;
-        go = GameObject.Instantiate(tetrisObjects[Random.Range(0, tetrisObjects.Length)], framePos, Quaternion.identity);
-        go.transform.Rotate(rotate);
-        saved = go.GetComponent<TetrisBlockController>();
+        block = GameObject.Instantiate(tetrisObjects[Random.Range(0, tetrisObjects.Length)], framePos, Quaternion.identity);
+        block.transform.Rotate(rotate);
+        saved = block.AddComponent<TetrisBlockController>();
         saved.SetMovable(false);
-        return go;
+        return block;
 
     }
 
