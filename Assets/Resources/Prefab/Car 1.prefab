@@ -216,8 +216,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.7759805, y: 1.9390259, z: 9.093716}
+  m_Center: {x: -0.18127775, y: -0.46951294, z: 5.431885}
 --- !u!54 &8302373196191640585
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -232,7 +232,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &8302373196191640584
 MonoBehaviour:
@@ -256,6 +256,8 @@ MonoBehaviour:
   moveLock: n
   laneNumberX: 3
   laneNumberY: 1
+  speedX: 4
+  speedY: 6
 --- !u!1 &8302373197187538518
 GameObject:
   m_ObjectHideFlags: 0
