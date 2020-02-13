@@ -3,7 +3,12 @@ guid: 46c23b745dbc07647b0c74c95c514742
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PetrolStationTexture
+    second: {fileID: 2100000, guid: c7d98af0a4e038044ab9d5b8f4e5c236, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
