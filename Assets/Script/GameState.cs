@@ -62,7 +62,7 @@ class GameState : States
     {
         block = GameObject.Instantiate(tetrisObjects[Random.Range(0, tetrisObjects.Length)], framePos, Quaternion.identity);
         block.transform.Rotate(rotate);
-        saved = block.AddComponent<TetrisBlockController>();
+        saved = block.GetComponent<TetrisBlockController>();
         saved.SetMovable(false);
         return block;
 

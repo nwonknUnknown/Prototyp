@@ -60,7 +60,6 @@ public class TetrisBlockController : MonoBehaviour
                 transform.position -= goingDownSpeed;
                 AddToGrid();
                 CheckIfLineIsFull();
-                FindObjectOfType<Game>().SpawnNextTetrisBlock();
                 enabled = false;
             }
 
