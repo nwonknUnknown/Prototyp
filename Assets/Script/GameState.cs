@@ -30,6 +30,8 @@ class GameState : States
             firstTime = false;
         }
 
+
+
         if (gameOver) // When the car is dead we enter EndState
         {
             score.DisableScore();
