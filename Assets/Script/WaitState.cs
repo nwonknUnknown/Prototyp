@@ -22,7 +22,6 @@ public class WaitState : States
         blockManager = new GameState();
 
         block.SpawnNextTetrisBlock();
-
     }
 
     public override States Do()

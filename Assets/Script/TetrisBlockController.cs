@@ -41,11 +41,15 @@ public class TetrisBlockController : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                transform.RotateAround(transform.TransformPoint (rotationPoint), new Vector3(0,1,0), 90); //Rotate from the middle of the object.
+            if (allowRotation == true)
+            {
+                transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 1, 0), 90); //Rotate from the middle of the object.
                 if (!CheckIsValidPosition())
                 {
                     transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 1, 0), -90); //Rotate back.
                 }
+            }
+                
             }
 
             if (Time.time - prievousFallTime > (Input.GetKeyDown(KeyCode.DownArrow) ? fallTime / 10 : fallTime)) 
