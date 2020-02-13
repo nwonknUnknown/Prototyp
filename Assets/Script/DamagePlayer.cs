@@ -1,0 +1,30 @@
+﻿using UnityEngine;
+
+public class DamagePlayer : MonoBehaviour
+{
+
+    [SerializeField] float damage;
+    HealthMeter healthBar;
+    
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.name == "Player")
+        {
+            healthBar.changeHealth(--damage);
+            //Spelaren blir odödlig och blinkar?
+        }
+    }        
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}

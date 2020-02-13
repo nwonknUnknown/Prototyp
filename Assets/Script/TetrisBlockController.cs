@@ -42,7 +42,7 @@ public class TetrisBlockController : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
             if (allowRotation == true)
-            {
+            {   
                 transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 1, 0), 90); //Rotate from the middle of the object.
                 if (!CheckIsValidPosition())
                 {
