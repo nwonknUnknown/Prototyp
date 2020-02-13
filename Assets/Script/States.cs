@@ -9,15 +9,6 @@ public abstract class States
     }
 }
 
-class EndState : States
-{
-    private LoseCondition scene;
-    public override States Do()
-    {
-        return null;
-    }
-}
-
 
 
 
