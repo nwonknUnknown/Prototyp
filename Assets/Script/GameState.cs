@@ -13,7 +13,7 @@ class GameState : States
     CarMovement car;
     GameObject carObject;
     Vector3 framePos;
-    private string[] tetrisBlockNames = {"Cube_Block", "L_Block", "Line_Block", "T_Block", "Z_Block", "Mirror_L_Block", "Mirror_Z_Block" };
+    private string[] tetrisBlockNames = { "Tetris_Cube_1", "Tetris_Cube_2", "Tetris_Cube_3", "Tetris_Cube_4", "Tetris_Cube_5", "Tetris_Cube_6", "Tetris_Cube_7" };
     private bool gameOver;
     private bool firstTime = false;
 
@@ -26,7 +26,12 @@ class GameState : States
         framePos = GameObject.Find("Block_Spawn_Point").transform.position;
 
 
+        tetrisObjects = new GameObject[tetrisBlockNames.Length];
+        for(int i = 0; i<tetrisBlockNames.Length; i++)
+        {
+            tetrisObjects[i] = Resources.Load($"Prefab/{tetrisBlockNames[i]}") as GameObject;
 
+        }
 
     }
 
@@ -55,12 +60,11 @@ class GameState : States
 
     public GameObject SpawnNextTetrisBlock()
     {
-        GameObject go;
-        go = GameObject.Instantiate(tetrisObjects[Random.Range(0, tetrisObjects.Length)], framePos, Quaternion.identity);
-        go.transform.Rotate(rotate);
-        saved = go.GetComponent<TetrisBlockController>();
+        block = GameObject.Instantiate(tetrisObjects[Random.Range(0, tetrisObjects.Length)], framePos, Quaternion.identity);
+        block.transform.Rotate(rotate);
+        saved = block.GetComponent<TetrisBlockController>();
         saved.SetMovable(false);
-        return go;
+        return block;
 
     }
 

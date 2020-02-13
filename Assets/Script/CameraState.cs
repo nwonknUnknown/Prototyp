@@ -30,7 +30,7 @@ class CameraState : States
         {
             moveVector = StartCamera.position + StartOffset;
             moveVector.x = 0;
-            moveVector.y = Mathf.Clamp(moveVector.y, 8, 10);
+            moveVector.y = Mathf.Clamp(moveVector.y, 4, 6);
 
             //Animation start of game
             camera.transform.position = Vector3.Lerp(moveVector + animationOffset, moveVector, transition);

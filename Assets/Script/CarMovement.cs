@@ -15,6 +15,8 @@ public class CarMovement : MonoBehaviour
     public string moveLock = "n";
     public int laneNumberX = 3;
     public int laneNumberY = 1;
+    public int speedX;
+    public int speedY;
 
     private bool preventMovement = false;
     // Start is called before the first frame update
@@ -33,28 +35,28 @@ public class CarMovement : MonoBehaviour
 
         if ((Input.GetKeyDown(moveLeft) && (laneNumberX > 1) && (moveLock == "n")))
         {
-            horizVelocity = -4;
+            horizVelocity = -speedX;
             StartCoroutine(stopSlide());
             laneNumberX -= 1;
             moveLock = "y";
         }
         if ((Input.GetKeyDown(moveRight) && (laneNumberX < 5) && (moveLock == "n")))
         {
-            horizVelocity = +4;
+            horizVelocity = +speedX;
             StartCoroutine(stopSlide());
             laneNumberX += 1;
             moveLock = "y";
         }
         if ((Input.GetKeyDown(moveUp) && (laneNumberY < 10) && (moveLock == "n")))
         {
-            verticVelocity = +6;
+            verticVelocity = +speedY;
             StartCoroutine(stopSlide());
             laneNumberY += 1;
             moveLock = "y";
         }
         if ((Input.GetKeyDown(moveDown) && (laneNumberY > 0) && (moveLock == "n")))
         {
-            verticVelocity = -6;
+            verticVelocity = -speedY;
             StartCoroutine(stopSlide());
             laneNumberY -= 1;
             moveLock = "y";

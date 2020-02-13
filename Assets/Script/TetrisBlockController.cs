@@ -7,13 +7,13 @@ public class TetrisBlockController : MonoBehaviour
     Vector3 rotationPoint;
     float prievousFallTime = 1; //Handles the time when the block is falling down.
     [SerializeField] float fallTime = 1; //Handles the speed, that the object is falling in.
-    public static int height = 20; //The height of the grid.
+    public static int height = 50; //The height of the grid.
     public static int width = 10; //The width of the grid.
     [SerializeField] bool allowRotation = true; //If rotation should be true on this object.
     [Header("The Z axes are the ones you whant to edit in order to edit the speed of the objekt.")]
-    [SerializeField] Vector3 goingDownSpeed; //Hastighet Z
-    [SerializeField] Vector3 goingLeftSpeed; //Hastighet X
-    [SerializeField] Vector3 goingRightSpeed;//Hastighet -X
+    [SerializeField] Vector3 goingDownSpeed = new Vector3 (0,0,-1); //Hastighet Z
+    [SerializeField] Vector3 goingLeftSpeed = new Vector3(-1, 0, 0); //Hastighet X
+    [SerializeField] Vector3 goingRightSpeed = new Vector3 (1,0,0);//Hastighet -X
     private static Transform[,] grid = new Transform[width, height]; //Positionen för tetrisblocken i griden.
     private bool movable;
 
@@ -60,7 +60,6 @@ public class TetrisBlockController : MonoBehaviour
                 transform.position -= goingDownSpeed;
                 AddToGrid();
                 CheckIfLineIsFull();
-                FindObjectOfType<Game>().SpawnNextTetrisBlock();
                 enabled = false;
             }
 

@@ -13,7 +13,6 @@ public class GameStartCamera : MonoBehaviour
     private Vector3 animationOffset = new Vector3(0, 5, 5);
 
     [SerializeField] ScoreCounter activateScore;
-    [SerializeField] Game frame;
 
     // Start is called before the first frame update
     void Start()

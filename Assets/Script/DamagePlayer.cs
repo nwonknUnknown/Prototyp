@@ -13,9 +13,9 @@ public class DamagePlayer : MonoBehaviour
         
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnCollisionEnter(Collision other)
     {
-        if(other.name == "Player")
+        if(other.collider.tag == "Player")
         {
             healthBar.changeHealth(--damage);
             //Spelaren blir odödlig och blinkar?
