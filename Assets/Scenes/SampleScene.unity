@@ -465,10 +465,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 626902067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22fb9409c3220204b8c3f2f764320541, type: 3}
+  m_Script: {fileID: 11500000, guid: c1dd1a2eec114934ca8336f1436c8c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tetrisObjects:
+  - {fileID: 3541488098721109934, guid: d19e126a187524940be7bb38d70ce603, type: 3}
   parent: {fileID: 626902068}
+  rotate: {x: 1.8, y: 87.6, z: 20}
 --- !u!1 &643712330
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,7 +882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activateScore: {fileID: 643712334}
-  frame: {fileID: 626902069}
+  frame: {fileID: 0}
 --- !u!1 &1012342507
 GameObject:
   m_ObjectHideFlags: 0
