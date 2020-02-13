@@ -337,10 +337,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f95699f5ab5f1b4d9813949a1a8c7b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveLeft: 0
-  moveRight: 0
-  moveUp: 0
-  moveDown: 0
+  hpMeter: {fileID: 0}
+  moveLeft: 276
+  moveRight: 275
+  moveUp: 273
+  moveDown: 274
   horizVelocity: 0
   verticVelocity: 0
   moveLock: n

@@ -3,7 +3,12 @@ guid: 1834de90ae9d6af4dbe35805a79d2bb4
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PalmTexture
+    second: {fileID: 2100000, guid: 23701c8eb914bc548838f40bd1e8227a, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
