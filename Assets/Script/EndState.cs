@@ -1,15 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 class EndState : States
 {
-    private LoseCondition scene;
 
     public EndState()
     {
-         scene.CheckGameOver();
-
+        SceneManager.LoadScene("GameOver");
     }
     public override States Do()
     {

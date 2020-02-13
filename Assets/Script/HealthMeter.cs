@@ -24,7 +24,7 @@ public class HealthMeter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        car.GetComponent<MeshRenderer>();
+        playerRender = car.GetComponent<MeshRenderer>();
         healthBar.maxValue = checks[checks.Length - 2];
         healthBar.minValue = checks[0];
         // Setting all relevant healthvalues.
@@ -33,6 +33,22 @@ public class HealthMeter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(invincibilityCounter >= 0)
+        {
+            invincibilityCounter -= Time.deltaTime;
+
+            flashCounter -= Time.deltaTime;
+            if (flashCounter <= 0)
+            {
+                playerRender.enabled = !playerRender.enabled;
+                flashCounter = flashLength;
+            }
+
+            if (invincibilityCounter <= 0)
+            {
+                playerRender.enabled = true;
+            }
+
             if (Input.GetKeyDown(KeyCode.X))
             {
                 changeHealth(-2);
@@ -56,21 +72,6 @@ public class HealthMeter : MonoBehaviour
             {
                 changeHealth(3);
                 Debug.Log("hp");
-            }
-        if(invincibilityCounter >= 0)
-        {
-            invincibilityCounter -= Time.deltaTime;
-
-            flashCounter -= Time.deltaTime;
-            if (flashCounter <= 0)
-            {
-                playerRender.enabled = !playerRender.enabled;
-                flashCounter = flashLength;
-            }
-
-            if (invincibilityCounter <= 0)
-            {
-                playerRender.enabled = true;
             }
 
         }

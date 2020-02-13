@@ -4,7 +4,6 @@ using UnityEngine.UI;
 class GameState : States
 {
     GameObject[] tetrisObjects;
-    [SerializeField] Transform parent;
     [SerializeField] Vector3 rotate;
     private TetrisBlockController saved;
     GameObject block;
@@ -12,7 +11,9 @@ class GameState : States
     GameObject scoreboard;
     CarMovement car;
     GameObject carObject;
+    Vector3 highwayPos;
     Vector3 framePos;
+    Vector3 originalScale;
     private string[] tetrisBlockNames = { "Tetris_Cube_1", "Tetris_Cube_2", "Tetris_Cube_3", "Tetris_Cube_4", "Tetris_Cube_5", "Tetris_Cube_6", "Tetris_Cube_7" };
     private bool gameOver;
     private bool firstTime = false;
@@ -23,7 +24,8 @@ class GameState : States
         score = scoreboard.GetComponent<ScoreCounter>();
 
 
-        framePos = GameObject.Find("Block_Spawn_Point").transform.position;
+        framePos = GameObject.Find("Next_Block_Object").transform.position;
+        highwayPos = GameObject.Find("Block_Spawn_Point").transform.position;
 
 
         tetrisObjects = new GameObject[tetrisBlockNames.Length];
@@ -44,7 +46,7 @@ class GameState : States
 
             car.SetEnabled(true);
             score.EnableScore();
-            MoveTetrisBlock(block, framePos);
+            MoveTetrisBlock(block, highwayPos);
             firstTime = false;
         }
 
@@ -60,8 +62,11 @@ class GameState : States
 
     public GameObject SpawnNextTetrisBlock()
     {
+        Vector3 scale = new Vector3(3f, 3f, 3f);
         block = GameObject.Instantiate(tetrisObjects[Random.Range(0, tetrisObjects.Length)], framePos, Quaternion.identity);
         block.transform.Rotate(rotate);
+        originalScale = block.transform.localScale;
+        block.transform.localScale = scale;
         saved = block.GetComponent<TetrisBlockController>();
         saved.SetMovable(false);
         return block;
@@ -70,7 +75,9 @@ class GameState : States
 
     public void MoveTetrisBlock(GameObject block, Vector3 position)
     {
+        block.transform.localScale = originalScale;
         block.transform.position = position;
+        block.transform.Rotate(90, 0, 0);
         saved.SetMovable(true);
     }
 
