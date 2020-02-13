@@ -47,6 +47,7 @@ class GameState : States
             car.SetEnabled(true);
             score.EnableScore();
             MoveTetrisBlock(block, highwayPos);
+            SpawnNextTetrisBlock();
             firstTime = false;
         }
 
@@ -63,7 +64,7 @@ class GameState : States
     public GameObject SpawnNextTetrisBlock()
     {
         Vector3 scale = new Vector3(3f, 3f, 3f);
-        block = GameObject.Instantiate(tetrisObjects[Random.Range(0, tetrisObjects.Length)], framePos, Quaternion.identity);
+        block = GameObject.Instantiate(tetrisObjects[0], framePos, Quaternion.identity);
         block.transform.Rotate(rotate);
         originalScale = block.transform.localScale;
         block.transform.localScale = scale;
@@ -90,6 +91,7 @@ class GameState : States
     {
         firstTime = true;
     }
+    //Random.Range(0, tetrisObjects.Length)
 
 
 

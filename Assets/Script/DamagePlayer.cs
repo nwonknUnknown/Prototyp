@@ -17,7 +17,7 @@ public class DamagePlayer : MonoBehaviour
     {
         if(other.collider.tag == "Player")
         {
-            healthBar.changeHealth(--damage);
+            healthBar.ChangeHealth(--damage);
             //Spelaren blir odödlig och blinkar?
         }
     }        

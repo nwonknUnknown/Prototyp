@@ -49,9 +49,9 @@ public class HealthMeter : MonoBehaviour
                 playerRender.enabled = true;
             }
 
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.C))
             {
-                changeHealth(-2);
+                ChangeHealth(-2);
                 Debug.Log("damage");
                 if (healthBar.value == 0) // load gameoverscreen
                 {
@@ -70,7 +70,7 @@ public class HealthMeter : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.C))
             {
-                changeHealth(3);
+                ChangeHealth(3);
                 Debug.Log("hp");
             }
 
@@ -80,7 +80,7 @@ public class HealthMeter : MonoBehaviour
 
 
 
-    public void changeHealth(float changeValue)
+    public void ChangeHealth(float changeValue)
     {
         healthBar.value += changeValue;
 

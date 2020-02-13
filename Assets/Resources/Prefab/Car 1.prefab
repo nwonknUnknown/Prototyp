@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpMeter: {fileID: 0}
+  currentBlock: {fileID: 0}
   moveLeft: 97
   moveRight: 100
   moveUp: 119

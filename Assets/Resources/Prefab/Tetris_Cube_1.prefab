@@ -8,7 +8,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593954682330096945}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
@@ -21,7 +21,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2247864448307199900}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2129299346385187097}
   - component: {fileID: 1253539278896430023}
+  - component: {fileID: 1185891333728503148}
   m_Layer: 0
   m_Name: Tetris_Cube_1
   m_TagString: Untagged
@@ -75,6 +76,20 @@ MonoBehaviour:
   goingDownSpeed: {x: 0, y: 0, z: -1}
   goingLeftSpeed: {x: -1, y: 0, z: 0}
   goingRightSpeed: {x: 1, y: 0, z: 0}
+  clashing: {fileID: 0}
+--- !u!65 &1185891333728503148
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2629418659459343100}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 1, z: 1}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!65 &6717719654602381992
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -83,7 +98,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6695065198920166920}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
@@ -96,7 +111,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7672108293232977554}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
