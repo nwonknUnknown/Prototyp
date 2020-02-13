@@ -19,12 +19,12 @@ public class WaitState : States
     public WaitState()
     {
         txt = GameObject.Find("Wait_Text").GetComponent<Text>();
-        blockManager = new GameState();
 
-        Frame = GameObject.Find("Frame");
-        block = Frame.GetComponentInChildren<Game>();
-        block.SpawnNextTetrisBlock();
+        Frame = GameObject.Find("Next_Block_Object");
+        block = Frame.GetComponent<Game>();
+        GameObject tetrisBlock = block.SpawnNextTetrisBlock();
 
+        blockManager = new GameState(tetrisBlock);
     }
 
     public override States Do()
@@ -33,7 +33,7 @@ public class WaitState : States
 
         if (spawnCar)
         {
-            car = GameObject.Instantiate(Resources.Load($"Prefab/Car", typeof(GameObject)) as GameObject, GameObject.Find("Car_Spawn_Point").transform);
+            car = GameObject.Instantiate(Resources.Load($"Prefab/Car 1", typeof(GameObject)) as GameObject, GameObject.Find("Car_Spawn_Point").transform);
             spawnCar = false;
             Debug.Log("carishere");
         }

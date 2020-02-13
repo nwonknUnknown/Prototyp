@@ -3,7 +3,11 @@ using UnityEngine.UI;
 
 class GameState : States
 {
-    Game block;
+    [SerializeField] GameObject[] tetrisObjects;
+    [SerializeField] Transform parent;
+    [SerializeField] Vector3 rotate;
+    private TetrisBlockController saved;
+    GameObject block;
     ScoreCounter score;
     GameObject scoreboard;
     CarMovement car;
@@ -12,10 +16,12 @@ class GameState : States
     private bool gameOver;
     private bool firstTime = false;
 
-    public GameState()
+    public GameState(GameObject frameBlock)
     {
         scoreboard = GameObject.Find("HighscoreCounter");
         score = scoreboard.GetComponent<ScoreCounter>();
+
+        block = frameBlock;
     }
 
     public override States Do()
@@ -27,6 +33,7 @@ class GameState : States
 
             car.SetEnabled(true);
             score.EnableScore();
+            MoveTetrisBlock(block.gameObject, GameObject.Find("Block_Spawn_Point").transform.position);
             firstTime = false;
         }
 
@@ -38,6 +45,23 @@ class GameState : States
             return (new EndState());
         }
         return this;
+    }
+
+    public GameObject SpawnNextTetrisBlock()
+    {
+        GameObject go;
+        go = Instantiate(tetrisObjects[Random.Range(0, tetrisObjects.Length)], transform.position, Quaternion.identity);
+        go.transform.Rotate(rotate);
+        saved = go.GetComponent<TetrisBlockController>();
+        saved.SetMovable(false);
+        return go;
+
+    }
+
+    public void MoveTetrisBlock(GameObject block, Vector3 position)
+    {
+        block.transform.position = position;
+        saved.SetMovable(true);
     }
 
     public void GameOver()
