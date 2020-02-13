@@ -3,7 +3,12 @@ guid: 4014295cb1c894e428ded2da129626d0
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ApartmentOneTexture
+    second: {fileID: 2100000, guid: 36d3e0eb8cab1d84a8067564e4cb0077, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
