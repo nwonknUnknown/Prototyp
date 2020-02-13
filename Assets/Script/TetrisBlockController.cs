@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 public class TetrisBlockController : MonoBehaviour
 {
     //Denna koden hanterar Tetris kubernas rörelse i spelet.Man kan återanvända dessa för spelaren, men kommer behöva ändra så att spelarens bil kan åka uppåt och neråt, samt att bilen ska inte åka neråt varje frame.
@@ -157,7 +158,6 @@ public class TetrisBlockController : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        clashing.ChangeHealth(-5);
         Destroy(gameObject.transform.parent);
         Debug.Log("boom");
     }
