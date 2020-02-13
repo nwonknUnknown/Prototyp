@@ -369,7 +369,7 @@ PrefabInstance:
     - target: {fileID: 4072892334640575968, guid: c973cac141072e5459d29006880f04f5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5.9
+      value: 5.899994
       objectReference: {fileID: 0}
     - target: {fileID: 4072892334640575969, guid: c973cac141072e5459d29006880f04f5,
         type: 3}
@@ -464,7 +464,7 @@ PrefabInstance:
     - target: {fileID: 4072892334951267903, guid: c973cac141072e5459d29006880f04f5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -519.2
+      value: -287.2
       objectReference: {fileID: 0}
     - target: {fileID: 4072892334951267903, guid: c973cac141072e5459d29006880f04f5,
         type: 3}
@@ -509,12 +509,12 @@ PrefabInstance:
     - target: {fileID: 4072892334951267903, guid: c973cac141072e5459d29006880f04f5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -206.2
+      value: -43.9
       objectReference: {fileID: 0}
     - target: {fileID: 4072892334951267903, guid: c973cac141072e5459d29006880f04f5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -15.9
+      value: 58.7
       objectReference: {fileID: 0}
     - target: {fileID: 4072892334951267903, guid: c973cac141072e5459d29006880f04f5,
         type: 3}
@@ -967,41 +967,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5304929903a700840aa18de288dd6b2d, type: 3}
---- !u!84 &160001725
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'Aura Directional Light : Shadow Map Render Texture'
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 512
-  m_Height: 512
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 0
-  m_ColorFormat: 52
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &198717712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1139,7 +1104,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1529995060}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1170,6 +1135,41 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!84 &283108643
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'Aura Directional Light : Shadow Map Render Texture'
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 512
+  m_Height: 512
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 0
+  m_ColorFormat: 52
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &314586406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -28, y: 174}
+  m_AnchoredPosition: {x: -763, y: 174}
   m_SizeDelta: {x: 169.91998, y: 38.350006}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &314586409
@@ -7554,7 +7554,7 @@ MonoBehaviour:
   overrideColor: 0
   overridingColor: {r: 1, g: 1, b: 1, a: 1}
   useShadow: 1
-  shadowMapRenderTexture: {fileID: 160001725}
+  shadowMapRenderTexture: {fileID: 283108643}
   useCookie: 1
   cookieMapRenderTexture: {fileID: 0}
   enableOutOfPhaseColor: 0
