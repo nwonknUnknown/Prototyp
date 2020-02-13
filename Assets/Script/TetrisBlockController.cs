@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class TetrisBlockController : MonoBehaviour
 {
-    //Denna koden hanterar Tetris kubernas rörelse i spelet. Man kan återanvända dessa för spelaren, men kommer behöva ändra så att spelarens bil kan åka uppåt och neråt, samt att bilen ska inte åka neråt varje frame. 
+    //Denna koden hanterar Tetris kubernas rörelse i spelet.Man kan återanvända dessa för spelaren, men kommer behöva ändra så att spelarens bil kan åka uppåt och neråt, samt att bilen ska inte åka neråt varje frame.
     Vector3 rotationPoint;
     float prievousFallTime = 1; //Handles the time when the block is falling down.
     [SerializeField] float fallTime = 1; //Handles the speed, that the object is falling in.
@@ -154,5 +154,4 @@ public class TetrisBlockController : MonoBehaviour
     {
         movable = newValue;
     }
-
 }
