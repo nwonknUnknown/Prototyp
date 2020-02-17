@@ -17,7 +17,12 @@ public class TetrisBlockController : MonoBehaviour
     [SerializeField] Vector3 goingRightSpeed = new Vector3 (1,0,0);//Hastighet -X
     private static Transform[,] grid = new Transform[width, height]; //Positionen för tetrisblocken i griden.
     private bool movable;
-    [SerializeField] HealthMeter clashing;
+    private HealthMeter clashing;
+
+    private void Start()
+    {
+        clashing = FindObjectOfType<HealthMeter>();
+    }
 
     // Update is called once per frame
     public void Update()
@@ -158,7 +163,10 @@ public class TetrisBlockController : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject.transform.parent);
+        Destroy(gameObject);
         Debug.Log("boom");
+        clashing.ChangeHealth(-5);
     }
+
+
 }

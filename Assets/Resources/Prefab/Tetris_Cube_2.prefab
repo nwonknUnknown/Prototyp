@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 53167117975613043}
   - component: {fileID: 53167117975613042}
+  - component: {fileID: 2714246576418702587}
+  - component: {fileID: 364828331388253563}
   m_Layer: 0
   m_Name: Tetris_Cube_2
   m_TagString: Untagged
@@ -49,6 +51,32 @@ MonoBehaviour:
   goingDownSpeed: {x: 0, y: 0, z: -1}
   goingLeftSpeed: {x: -1, y: 0, z: 0}
   goingRightSpeed: {x: 1, y: 0, z: 0}
+--- !u!65 &2714246576418702587
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53167117975613005}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.1, z: 0.1}
+  m_Center: {x: 0.05, y: -0.05, z: 0}
+--- !u!65 &364828331388253563
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53167117975613005}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.2, z: 0.1}
+  m_Center: {x: -0.05, y: 0, z: 0}
 --- !u!65 &53167118161425362
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -23,6 +23,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2759152082264520942}
   - component: {fileID: 3931755348379339669}
+  - component: {fileID: 4660173608551280855}
   m_Layer: 0
   m_Name: Tetris_Cube_3
   m_TagString: Untagged
@@ -37,14 +38,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4411696973307208357}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.02, y: 1.5, z: -0.11}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1141012851361015750}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &3931755348379339669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +63,19 @@ MonoBehaviour:
   goingDownSpeed: {x: 0, y: 0, z: -1}
   goingLeftSpeed: {x: -1, y: 0, z: 0}
   goingRightSpeed: {x: 1, y: 0, z: 0}
-  clashing: {fileID: 0}
+--- !u!65 &4660173608551280855
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4411696973307208357}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 1}
 --- !u!65 &5381526583161664910
 BoxCollider:
   m_ObjectHideFlags: 0
