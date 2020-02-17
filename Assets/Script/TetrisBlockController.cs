@@ -18,10 +18,12 @@ public class TetrisBlockController : MonoBehaviour
     private static Transform[,] grid = new Transform[width, height]; //Positionen för tetrisblocken i griden.
     private bool movable;
     private HealthMeter clashing;
+    private GameState blockManager;
 
     private void Start()
     {
         clashing = FindObjectOfType<HealthMeter>();
+
     }
 
     // Update is called once per frame
@@ -163,9 +165,10 @@ public class TetrisBlockController : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
         Debug.Log("boom");
         clashing.ChangeHealth(-5);
+        Destroy(gameObject);
+      //  blockManager.ClashingBlock();
     }
 
 

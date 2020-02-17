@@ -17,6 +17,7 @@ class GameState : States
     private string[] tetrisBlockNames = { "Tetris_Cube_1", "Tetris_Cube_2", "Tetris_Cube_3", "Tetris_Cube_4", "Tetris_Cube_5", "Tetris_Cube_6", "Tetris_Cube_7" };
     private bool gameOver;
     private bool firstTime = false;
+    private bool blockFinished = false;
 
     public GameState()
     {
@@ -28,8 +29,10 @@ class GameState : States
         highwayPos = GameObject.Find("Block_Spawn_Point").transform.position;
 
 
+
+
         tetrisObjects = new GameObject[tetrisBlockNames.Length];
-        for(int i = 0; i<tetrisBlockNames.Length; i++)
+        for (int i = 0; i < tetrisBlockNames.Length; i++)
         {
             tetrisObjects[i] = Resources.Load($"Prefab/{tetrisBlockNames[i]}") as GameObject;
 
@@ -39,6 +42,13 @@ class GameState : States
 
     public override States Do()
     {
+
+        /*if(tetrisObjects[0] == null)
+        {
+            Debug.Log("blackmagic");
+            blockFinished = true;
+
+        }*/
         if (firstTime)
         {
             carObject = GameObject.Find("Car 1(Clone)");
@@ -50,7 +60,13 @@ class GameState : States
             SpawnNextTetrisBlock();
             firstTime = false;
         }
-
+        if (blockFinished)
+        {
+            Debug.Log("changing block");
+            MoveTetrisBlock(block, highwayPos);
+            SpawnNextTetrisBlock();
+            blockFinished = false;
+        }
 
 
         if (gameOver) // When the car is dead we enter EndState
@@ -63,7 +79,7 @@ class GameState : States
 
     public GameObject SpawnNextTetrisBlock()
     {
-        
+
         Vector3 scale = new Vector3(3f, 3f, 3f);
         block = GameObject.Instantiate(tetrisObjects[Random.Range(0, tetrisObjects.Length)], framePos, Quaternion.identity);
         block.transform.Rotate(rotate);
@@ -92,7 +108,12 @@ class GameState : States
     {
         firstTime = true;
     }
-    
+
+    public void ClashingBlock()
+    {
+        blockFinished = true;
+    }
+
 
 
 
