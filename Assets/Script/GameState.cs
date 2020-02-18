@@ -28,9 +28,6 @@ class GameState : States
         framePos = GameObject.Find("Next_Block_Object").transform.position;
         highwayPos = GameObject.Find("Block_Spawn_Point").transform.position;
 
-
-
-
         tetrisObjects = new GameObject[tetrisBlockNames.Length];
         for (int i = 0; i < tetrisBlockNames.Length; i++)
         {
@@ -42,13 +39,8 @@ class GameState : States
 
     public override States Do()
     {
+        
 
-        /*if(tetrisObjects[0] == null)
-        {
-            Debug.Log("blackmagic");
-            blockFinished = true;
-
-        }*/
         if (firstTime)
         {
             carObject = GameObject.Find("Car 1(Clone)");
